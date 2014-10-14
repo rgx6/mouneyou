@@ -1,0 +1,13 @@
+{
+    "appenders": [
+        { "type": "console" },
+        {
+            "type": "file",
+            "filename": "log/log",
+            "maxLogSize": 1000000,
+            "backups": 50,
+            "category": ["log", "console"]
+        }
+    ],
+    "replaceConsole": true
+}
