@@ -43,7 +43,7 @@
             src: 'http://pic.twitter.com/M6I6regjKd'
         }, {
             image: '/images/stamp012.png',
-            src: 'http://pic.twitter.com/U0sqDJL8Rg'
+            src: 'http://pic.twitter.com/Iv8gvPUATM'
         }, {
             image: '/images/stamp013.png',
             src: 'http://pic.twitter.com/sQOagjwDRJ'
