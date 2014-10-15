@@ -10,31 +10,31 @@
 
         var items = [
             {
-                image: '/images/stamp001.jpg',
+                image: '/images/stamp001.png',
                 src: 'http://pic.twitter.com/8UNWlFTRDS'
             }, {
-                image: '/images/stamp002.jpg',
+                image: '/images/stamp002.png',
                 src: 'http://pic.twitter.com/VcwA4qwG1M'
             }, {
-                image: '/images/stamp003.jpg',
+                image: '/images/stamp003.png',
                 src: 'http://pic.twitter.com/ovFQeH1qD6'
             }, {
-                image: '/images/stamp004.jpg',
+                image: '/images/stamp004.png',
                 src: 'http://pic.twitter.com/zEZc5fsa3C'
             }, {
-                image: '/images/stamp005.jpg',
+                image: '/images/stamp005.png',
                 src: 'http://pic.twitter.com/ooDW5xx6pc'
             }, {
-                image: '/images/stamp006.jpg',
+                image: '/images/stamp006.png',
                 src: 'http://pic.twitter.com/XO5YmxNLzI'
             }, {
-                image: '/images/stamp007.jpg',
+                image: '/images/stamp007.png',
                 src: 'http://pic.twitter.com/a0Opq4QPfp'
             }, {
-                image: '/images/stamp008.jpg',
+                image: '/images/stamp008.png',
                 src: 'http://pic.twitter.com/wuqX3fyL0Q'
             }, {
-                image: '/images/stamp009.jpg',
+                image: '/images/stamp009.png',
                 src: 'http://pic.twitter.com/2AY7vdkHpM'
             }
         ];
