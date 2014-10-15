@@ -11,31 +11,31 @@
         var items = [
             {
                 image: '/images/stamp001.png',
-                src: 'http://pic.twitter.com/8UNWlFTRDS'
+                src: 'http://pic.twitter.com/zJf9UxVkCy'
             }, {
                 image: '/images/stamp002.png',
-                src: 'http://pic.twitter.com/VcwA4qwG1M'
+                src: 'http://pic.twitter.com/gGWnG2T1N2'
             }, {
                 image: '/images/stamp003.png',
-                src: 'http://pic.twitter.com/ovFQeH1qD6'
+                src: 'http://pic.twitter.com/8dnYyZqEoF'
             }, {
                 image: '/images/stamp004.png',
-                src: 'http://pic.twitter.com/zEZc5fsa3C'
+                src: 'http://pic.twitter.com/zjx4PUhbmY'
             }, {
                 image: '/images/stamp005.png',
-                src: 'http://pic.twitter.com/ooDW5xx6pc'
+                src: 'http://pic.twitter.com/kHnGxG95CI'
             }, {
                 image: '/images/stamp006.png',
-                src: 'http://pic.twitter.com/XO5YmxNLzI'
+                src: 'http://pic.twitter.com/SbRtVCDOit'
             }, {
                 image: '/images/stamp007.png',
-                src: 'http://pic.twitter.com/a0Opq4QPfp'
+                src: 'http://pic.twitter.com/zIdqC5MtxE'
             }, {
                 image: '/images/stamp008.png',
-                src: 'http://pic.twitter.com/wuqX3fyL0Q'
+                src: 'http://pic.twitter.com/yYZEcqQCGZ'
             }, {
                 image: '/images/stamp009.png',
-                src: 'http://pic.twitter.com/2AY7vdkHpM'
+                src: 'http://pic.twitter.com/dYwZ3axpKW'
             }
         ];
 
