@@ -5,7 +5,7 @@
             + '?lang=ja'
             + '&hashtags=' + encodeURI('てゆうかもう寝よう')
             + '&text={src}'
-            + '&url=' + encodeURI('http://mouneyou.rgx6.com/');
+            + '&url=' + encodeURI(location.href);
 
     var items = [
         {
@@ -47,6 +47,18 @@
         }, {
             image: '/images/stamp013.png',
             src: 'http://pic.twitter.com/sQOagjwDRJ'
+        }, {
+            image: '/images/stamp014.png',
+            src: 'http://pic.twitter.com/1iWz6NfP9t'
+        }, {
+            image: '/images/stamp015.png',
+            src: 'http://pic.twitter.com/tyXVCqpQTc'
+        }, {
+            image: '/images/stamp016.png',
+            src: 'http://pic.twitter.com/e1CILuyhgc'
+        }, {
+            image: '/images/stamp017.png',
+            src: 'http://pic.twitter.com/jmUVSC3zXK'
         }
     ];
 
@@ -86,6 +98,8 @@
             });
             divitems.appendChild(div);
         }
+
+        getTweetCount('count');
     }
 
     function getRandomItem () {
@@ -102,5 +116,24 @@
 
         document.getElementById('image').style.backgroundImage = 'url("' + item.image + '")';
         document.getElementById('tweet').setAttribute('href', tweetUrl.replace('{src}', item.src));
+    }
+
+    function getTweetCount (id) {
+        'use strict';
+        // console.log('getTweetCount');
+
+        var callback_name = 'jsonp_id';
+        var url = 'http://urls.api.twitter.com/1/urls/count.json'
+                + '?url=' + encodeURI(location.href)
+                + '&callback=' + callback_name
+                + '&noncache=' + new Date();
+        var target = document.createElement('script');
+        target.charset = 'utf-8';
+        target.src = url;
+        document.body.appendChild(target);
+        window[callback_name] = function (data) {
+            console.log(data.count);
+            // document.getElementById(id).innerHTML = data.count;
+        };
     }
 })();
