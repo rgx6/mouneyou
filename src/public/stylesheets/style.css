@@ -1,0 +1,60 @@
+body {
+  background-color: #eee;
+}
+
+.title {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.title a {
+  font-size: 48px;
+  cursor: pointer;
+}
+
+.image {
+  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.tweet {
+  margin: 20px 0 4px 0;
+  text-align: center;
+}
+
+.tweet button {
+  font-size: 30px;
+}
+
+.items {
+  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+}
+
+.items div {
+  float: left;
+  width: 112px;
+  height: 112px;
+  margin: 16px 0 0 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.clearboth {
+  clear: both;
+}
+
+.footer {
+  text-align: center;
+}
