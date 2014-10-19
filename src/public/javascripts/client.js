@@ -15,6 +15,8 @@ ga('send', 'pageview');
             + '&text={src}'
             + '&url=' + encodeURI(location.href);
 
+    var tweetListUrl = 'https://twitter.com/search?q=' + encodeURI(location.href);
+
     var items = [
         {
             image: '/images/stamp001.png',
@@ -80,10 +82,6 @@ ga('send', 'pageview');
         setItem(item);
     });
 
-    document.getElementsByTagName('body')[0].addEventListener('selectstart', function () {
-        console.log('hoge');
-    });
-
     function init() {
         'use strict';
         // console.log('init');
@@ -107,6 +105,7 @@ ga('send', 'pageview');
             divitems.appendChild(div);
         }
 
+        document.getElementById('count').setAttribute('href', tweetListUrl);
         getTweetCount('count');
     }
 
@@ -122,7 +121,7 @@ ga('send', 'pageview');
         'use strict';
         // console.log('setItem');
 
-        document.getElementById('image').style.backgroundImage = 'url("' + item.image + '")';
+        document.getElementById('selected').style.backgroundImage = 'url("' + item.image + '")';
         document.getElementById('tweet').setAttribute('href', tweetUrl.replace('{src}', item.src));
     }
 
@@ -140,8 +139,7 @@ ga('send', 'pageview');
         target.src = url;
         document.body.appendChild(target);
         window[callback_name] = function (data) {
-            console.log(data.count);
-            // document.getElementById(id).innerHTML = data.count;
+            document.getElementById('count').text = data.count;
         };
     }
 })();
