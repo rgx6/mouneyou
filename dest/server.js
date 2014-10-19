@@ -15,7 +15,7 @@ app.use(log4js.connectLogger(logger, {
     // express 閾値ではなく指定したログレベルで記録される
     'level': log4js.levels.INFO,
     // アクセスログを出力する際に無視する拡張子
-    'nolog': [ '\\.css', '\\.js', '\\.jpg' ],
+    'nolog': [ '\\.css', '\\.js', '\\.png' ],
     // アクセスログのフォーマット
     'format': JSON.stringify({
         'remote-addr':    ':remote-addr',
@@ -33,8 +33,9 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // NODE_ENV=production node server.js  default:development
-if (process.env.NODE_ENV === 'production') {
+if (app.get('env') === 'development') {
     app.use(express.errorHandler({ showStack: true, dumpExceptions: true }));
+    app.locals.pretty = true;
 }
 
 // 404 not found
