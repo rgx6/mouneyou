@@ -57,9 +57,49 @@ body {
 }
 
 .items .count {
+  position: relative;
   text-align: center;
   line-height: 100px;
   font-size: 20px;
+}
+
+.arrow:after {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-width: 10px;
+}
+
+.arrowtweetleft:after {
+  right: 100%;
+  top: 50%;
+  border-right-color: #55acee;
+  margin-top: -10px;
+}
+
+.arrowtweettop:after {
+  bottom: 100%;
+  left: 50%;
+  border-bottom-color: #55acee;
+  margin-left: -10px;
+}
+
+.arrowcountleft:after {
+  right: 100%;
+  top: 50%;
+  border-right-color: #ffffff;
+  margin-top: -10px;
+}
+
+.arrowcounttop:after {
+  bottom: 100%;
+  left: 50%;
+  border-bottom-color: #ffffff;
+  margin-left: -10px;
 }
 
 .clearboth {

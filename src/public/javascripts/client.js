@@ -74,6 +74,13 @@ ga('send', 'pageview');
 
     init();
 
+    window.addEventListener('resize', function () {
+        'use strict';
+        // console.log('window resize');
+
+        refreshArrow();
+    });
+
     document.getElementById('title').addEventListener('click', function () {
         'use strict';
         // console.log('#title click');
@@ -107,6 +114,7 @@ ga('send', 'pageview');
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
         getTweetCount('count');
+        refreshArrow();
     }
 
     function getRandomItem () {
@@ -141,5 +149,31 @@ ga('send', 'pageview');
         window[callback_name] = function (data) {
             document.getElementById('count').text = data.count;
         };
+    }
+
+    function refreshArrow () {
+        'use strict';
+        // console.log('refreshArrow');
+
+        var width = window.innerWidth;
+
+        var tweetobj = document.getElementById('tweet');
+        if (width < 440) {
+            tweetobj.classList.remove('arrowtweetleft');
+            tweetobj.classList.add('arrowtweettop');
+        } else {
+            tweetobj.classList.remove('arrowtweettop');
+            tweetobj.classList.add('arrowtweetleft');
+        }
+
+        var countobj = document.getElementById('count');
+        if (width < 220 ||
+            (440 <= width && width < 550)) {
+            countobj.classList.remove('arrowcountleft');
+            countobj.classList.add('arrowcounttop');
+        } else {
+            countobj.classList.remove('arrowcounttop');
+            countobj.classList.add('arrowcountleft');
+        }
     }
 })();
