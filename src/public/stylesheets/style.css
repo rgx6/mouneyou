@@ -42,9 +42,18 @@ body {
 }
 
 .items .tweet {
+  position: relative;
   background-color: #55acee;
   background-image: url("/images/Twitter_logo_white.png");
   background-size: auto;
+}
+
+.items .tweet p {
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  bottom: 7px;
 }
 
 .items .count {
