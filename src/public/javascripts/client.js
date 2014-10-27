@@ -81,6 +81,18 @@ ga('send', 'pageview');
         }, {
             image: '/images/stamp021.png',
             src: 'http://pic.twitter.com/SYkLTqipqL'
+        }, {
+            image: '/images/stamp022.png',
+            src: 'http://pic.twitter.com/wb79W80JeH'
+        }, {
+            image: '/images/stamp023.png',
+            src: 'http://pic.twitter.com/YYwHReTUBS'
+        }, {
+            image: '/images/stamp024.png',
+            src: 'http://pic.twitter.com/VnmJEufqY2'
+        }, {
+            image: '/images/stamp025.png',
+            src: 'http://pic.twitter.com/6viZHnOBEn'
         }
     ];
 
