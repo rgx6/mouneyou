@@ -22,6 +22,10 @@ body {
   max-width: 880px;
 }
 
+.items .size-cover {
+  background-size: cover;
+}
+
 .items div, .items a {
   float: left;
   width: 100px;

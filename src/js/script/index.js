@@ -39,10 +39,12 @@
             src: 'http://pic.twitter.com/dYwZ3axpKW'
         }, {
             image: '/images/stamp010.png',
-            src: 'http://pic.twitter.com/Z0yAX0QcHJ'
+            src: 'http://pic.twitter.com/Z0yAX0QcHJ',
+            isCover: true
         }, {
             image: '/images/stamp011.png',
-            src: 'http://pic.twitter.com/M6I6regjKd'
+            src: 'http://pic.twitter.com/M6I6regjKd',
+            isCover: true
         }, {
             image: '/images/stamp012.png',
             src: 'http://pic.twitter.com/Iv8gvPUATM'
@@ -78,7 +80,8 @@
             src: 'http://pic.twitter.com/wb79W80JeH'
         }, {
             image: '/images/stamp023.png',
-            src: 'http://pic.twitter.com/YYwHReTUBS'
+            src: 'http://pic.twitter.com/YYwHReTUBS',
+            isCover: true
         }, {
             image: '/images/stamp024.png',
             src: 'http://pic.twitter.com/VnmJEufqY2'
@@ -118,6 +121,7 @@
             var div = document.createElement('div');
             div.setAttribute('index', i);
             div.style.backgroundImage = 'url("' + items[i].image + '")';
+            if (items[i].isCover) div.classList.add('size-cover');
             div.addEventListener('click', function () {
                 // console.log('#items div click');
 
@@ -144,7 +148,13 @@
         'use strict';
         // console.log('setItem');
 
-        document.getElementById('selected').style.backgroundImage = 'url("' + item.image + '")';
+        var selected = document.getElementById('selected');
+        selected.style.backgroundImage = 'url("' + item.image + '")';
+        if (item.isCover) {
+            selected.classList.add('size-cover');
+        } else {
+            selected.classList.remove('size-cover');
+        }
         document.getElementById('tweet').setAttribute('href', tweetUrl.replace('{src}', item.src));
     }
 
