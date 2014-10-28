@@ -7,7 +7,7 @@ ga('create', 'UA-52114327-4', 'auto');
 ga('send', 'pageview');
 
 (function () {
-    'use strict';
+    // 'use strict';
 
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
@@ -114,7 +114,7 @@ ga('send', 'pageview');
     });
 
     function init() {
-        'use strict';
+        // 'use strict';
         // console.log('init');
 
         var item = getRandomItem();

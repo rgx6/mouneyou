@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    // 'use strict';
 
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
@@ -106,7 +106,7 @@
     });
 
     function init() {
-        'use strict';
+        // 'use strict';
         // console.log('init');
 
         var item = getRandomItem();
