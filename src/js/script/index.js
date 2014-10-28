@@ -129,7 +129,6 @@
         }
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
-        getTweetCount('count');
         refreshArrow();
     }
 
@@ -147,24 +146,6 @@
 
         document.getElementById('selected').style.backgroundImage = 'url("' + item.image + '")';
         document.getElementById('tweet').setAttribute('href', tweetUrl.replace('{src}', item.src));
-    }
-
-    function getTweetCount (id) {
-        'use strict';
-        // console.log('getTweetCount');
-
-        var callback_name = 'jsonp_id';
-        var url = 'http://urls.api.twitter.com/1/urls/count.json'
-                + '?url=' + encodeURI(location.href)
-                + '&callback=' + callback_name
-                + '&noncache=' + new Date();
-        var target = document.createElement('script');
-        target.charset = 'utf-8';
-        target.src = url;
-        document.body.appendChild(target);
-        window[callback_name] = function (data) {
-            document.getElementById('count').text = data.count;
-        };
     }
 
     function refreshArrow () {

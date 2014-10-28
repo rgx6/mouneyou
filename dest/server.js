@@ -46,7 +46,16 @@ app.use(function (req, res) {
 // routing
 var appRoot = '/';
 app.get(appRoot, function (req, res) {
-    res.render('index');
+    http.get('http://urls.api.twitter.com/1/urls/count.json?url=http://mouneyou.rgx6.com/', function (apiRes) {
+        apiRes.setEncoding('utf8');
+        apiRes.on('data', function (chunk) {
+            var data = JSON.parse(chunk);
+            res.render('index', { count: data.count });
+        });
+    }).on('error', function (e) {
+        logger.error(e);
+        res.render('index', { count: '検索' });
+    });
 });
 
 var server = http.createServer(app);
