@@ -100,6 +100,19 @@
         }, {
             image: '/images/stamp029.png',
             src: 'http://pic.twitter.com/RQdFyGXkcv'
+        }, {
+            image: '/images/stamp030.png',
+            src: 'http://pic.twitter.com/4xZ45MTCNv'
+        }, {
+            image: '/images/stamp031.png',
+            src: 'http://pic.twitter.com/M1zjqfk8pH'
+        }, {
+            image: '/images/stamp032.png',
+            src: 'http://pic.twitter.com/agDkVgLd3n'
+        }, {
+            image: '/images/stamp033.png',
+            src: 'http://pic.twitter.com/3wfkhxsCH1',
+            isCover: true
         }
     ];
 
