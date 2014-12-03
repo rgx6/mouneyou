@@ -121,6 +121,18 @@ ga('send', 'pageview');
             image: '/images/stamp033.png',
             src: 'http://pic.twitter.com/3wfkhxsCH1',
             isCover: true
+        }, {
+            image: '/images/stamp034.png',
+            src: 'http://pic.twitter.com/29RqnztSk9'
+        }, {
+            image: '/images/stamp035.png',
+            src: 'http://pic.twitter.com/XiMVmrDUWp'
+        }, {
+            image: '/images/stamp036.png',
+            src: 'http://pic.twitter.com/hXcB5g6Ygq'
+        }, {
+            image: '/images/stamp037.png',
+            src: 'http://pic.twitter.com/XWopb3cOts'
         }
     ];
 
