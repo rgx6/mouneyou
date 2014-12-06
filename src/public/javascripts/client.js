@@ -133,6 +133,21 @@ ga('send', 'pageview');
         }, {
             image: '/images/stamp037.png',
             src: 'http://pic.twitter.com/XWopb3cOts'
+        }, {
+            image: '/images/stamp038.png',
+            src: 'http://pic.twitter.com/E9kjtoqJRR'
+        }, {
+            image: '/images/stamp039.png',
+            src: 'http://pic.twitter.com/CQkpQ8Altc'
+        }, {
+            image: '/images/stamp040.png',
+            src: 'http://pic.twitter.com/sA362F6rix'
+        }, {
+            image: '/images/stamp041.png',
+            src: 'http://pic.twitter.com/Gg4ehjqB97'
+        }, {
+            image: '/images/stamp042.png',
+            src: 'http://pic.twitter.com/i0LrCSSpzB'
         }
     ];
 
