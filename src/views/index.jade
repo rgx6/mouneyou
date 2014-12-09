@@ -13,11 +13,14 @@ html
   body
     div.title
       a#title てゆうかもう寝よう。
-    div#items.items
-      div#selected.selected
-      a#tweet.tweet.arrow(target="_blank")
+    div#items.items(style="float: left;")
+      div#selected.selected.notsortable
+      a#tweet.tweet.arrow.notsortable(target="_blank")
         p ツイート
-      a#count.count.arrow(target="_blank") #{count}
+      a#count.count.arrow.notsortable(target="_blank") #{count}
+      div#sort.sort.notsortable
+        label ならべかえ
+        label#modelabel.modelabel.off OFF
     div.clearboth
     div.footer
       p &copy;&nbsp;2014&nbsp;

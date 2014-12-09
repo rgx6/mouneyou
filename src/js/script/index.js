@@ -160,6 +160,40 @@
         setItem(item);
     });
 
+    document.getElementById('sort').addEventListener('click', function () {
+        'use strict';
+        // console.log('#sort click');
+
+        var items = $('#items');
+        var modelabel = document.getElementById('modelabel');
+
+        var isDisabled = items.sortable('instance') == null || items.sortable('option', 'disabled');
+        if (isDisabled) {
+            items.sortable({
+                cursor: 'move',
+                delay: 300,
+                items: 'div:not(.notsortable)',
+                tolerance: 'pointer',
+                start: function (event, ui) {
+                    ui.item.addClass('sorting');
+                },
+                stop: function (event, ui) {
+                    ui.item.removeClass('sorting');
+                }
+            });
+
+            modelabel.classList.add('on');
+            modelabel.classList.remove('off');
+            modelabel.textContent = 'ON';
+        } else {
+            // disableではスワイプによるスクロールができなかったのでdestroyしている。
+            items.sortable('destroy');
+            modelabel.classList.add('off');
+            modelabel.classList.remove('on');
+            modelabel.textContent = 'OFF';
+        }
+    });
+
     function init() {
         // 'use strict';
         // console.log('init');
@@ -167,7 +201,7 @@
         var item = getRandomItem();
         setItem(item);
 
-        var divitems = document.getElementById('items');
+        var sortButton = document.getElementById('sort');
 
         for (var i = 0; i < items.length; i++) {
             var div = document.createElement('div');
@@ -181,7 +215,8 @@
                 var item = items[index];
                 setItem(item);
             });
-            divitems.appendChild(div);
+
+            document.getElementById('items').insertBefore(div, sortButton);
         }
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
