@@ -9,7 +9,7 @@
 
     var tweetListUrl = 'https://twitter.com/search?q=' + encodeURI(location.href);
 
-    var items = [
+    var stamps = [
         {
             image: '/images/stamp001.png',
             src: 'http://pic.twitter.com/zJf9UxVkCy'
@@ -175,11 +175,14 @@
                 items: 'div:not(.notsortable)',
                 tolerance: 'pointer',
                 start: function (event, ui) {
+                    // console.log('start');
                     ui.item.addClass('sorting');
                 },
                 stop: function (event, ui) {
+                    // console.log('stop');
                     ui.item.removeClass('sorting');
-                }
+                    saveStampOrder();
+                },
             });
 
             modelabel.classList.add('on');
@@ -203,16 +206,24 @@
 
         var sortButton = document.getElementById('sort');
 
-        for (var i = 0; i < items.length; i++) {
+        var stampOrder = loadStampOrder();
+
+        for (var i = 0; i < stamps.length; i++) {
+            var index = 0;
+            if (i < stampOrder.length) {
+                index = stampOrder[i];
+            } else {
+                index = i;
+            }
             var div = document.createElement('div');
-            div.setAttribute('index', i);
-            div.style.backgroundImage = 'url("' + items[i].image + '")';
-            if (items[i].isCover) div.classList.add('size-cover');
+            div.setAttribute('index', index);
+            div.style.backgroundImage = 'url("' + stamps[index].image + '")';
+            if (stamps[index].isCover) div.classList.add('size-cover');
             div.addEventListener('click', function () {
                 // console.log('#items div click');
 
                 var index = this.getAttribute('index');
-                var item = items[index];
+                var item = stamps[index];
                 setItem(item);
             });
 
@@ -227,8 +238,8 @@
         'use strict';
         // console.log('getRandom');
 
-        var index = Math.floor(Math.random() * items.length);
-        return items[index];
+        var index = Math.floor(Math.random() * stamps.length);
+        return stamps[index];
     }
 
     function setItem (item) {
@@ -270,4 +281,22 @@
             countobj.classList.add('arrowcountleft');
         }
     }
+
+    function loadStampOrder () {
+        'use strict';
+        // console.log('loadStampOrder');
+
+        var stampOrder = localStorage.stampOrder ? JSON.parse(localStorage.stampOrder) : [];
+        return stamps.length < stampOrder.length ? [] : stampOrder;
+    }
+
+    function saveStampOrder () {
+        'use strict';
+        // console.log('saveStampOrder');
+
+        var stampOrder = $('#items')
+                .sortable('toArray', { attribute: 'index' })
+                .map(function (x) { return +x; });
+        localStorage.stampOrder = JSON.stringify(stampOrder);
+    };
 })();
