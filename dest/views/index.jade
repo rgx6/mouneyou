@@ -3,25 +3,30 @@ html
   head
     meta(charset="utf-8")
     meta(http-equiv="Content-Language", content="ja")
-    meta(name="keywords", content="すたちゅー,スタチュー,てゆうかもう寝よう")
+    meta(name="keywords", content="すたちゅー,スタチュー,てゆうかもう寝よう,ていうかもう寝よう")
     meta(name="description", content="てゆうかもう寝よう")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title="てゆうかもう寝よう。"
     link(rel="icon", href="/images/favicon.png", type="image/png")
     link(type="text/css", rel="stylesheet", href="/stylesheets/style.css")
     script(type="application/javascript", src="/javascripts/client.js", defer)
+    script.
+      var _id = "#{id}";
+      var _stampOrder = !{JSON.stringify(stampOrder)};
   body
     div.title
       a#title てゆうかもう寝よう。
     div#items.items
-      div#selected.selected.notsortable
-      a#tweet.tweet.arrow.notsortable(target="_blank")
+      div#selected.selected
+      a#tweet.tweet.arrow(target="_blank")
         p ツイート
-      a#count.count.arrow.notsortable(target="_blank") #{count}
-      div#sort.sort.notsortable
+      a#count.count.arrow(target="_blank")
+      div#sort.sort
         label ならべかえ
         label#modelabel.modelabel.off OFF
+      div#sync.sync ならび同期
     div.clearboth
+    div#updated.updated ならび順を保存しました
     div.footer
       p &copy;&nbsp;2014&nbsp;
         | 作:&nbsp;

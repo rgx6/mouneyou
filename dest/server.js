@@ -2,16 +2,21 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var log4js = require('log4js');
+var routes = require('./routes.js');
 
 log4js.configure('log4js_configuration.json', { reloadSecs: 60 });
-var logger = log4js.getLogger('log');
-logger.setLevel(log4js.levels.INFO);
+var appLogger = log4js.getLogger('appLog');
+// appLogger.setLevel(log4js.levels.INFO);
+appLogger.setLevel(log4js.levels.DEBUG);
+var accessLogger = log4js.getLogger('accessLog');
+accessLogger.setLevel(log4js.levels.INFO);
 
 var app = express();
 app.set('port', process.env.PORT || 3003);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(log4js.connectLogger(logger, {
+app.use(express.bodyParser());
+app.use(log4js.connectLogger(accessLogger, {
     // express 閾値ではなく指定したログレベルで記録される
     'level': log4js.levels.INFO,
     // アクセスログを出力する際に無視する拡張子
@@ -45,24 +50,13 @@ app.use(function (req, res) {
 
 // routing
 var appRoot = '/';
-app.get(appRoot, function (req, res) {
-    http.get('http://urls.api.twitter.com/1/urls/count.json?url=http://mouneyou.rgx6.com/', function (apiRes) {
-        apiRes.setEncoding('utf8');
-        apiRes.on('data', function (chunk) {
-            var data = JSON.parse(chunk);
-            res.render('index', { count: data.count });
-        });
-    }).on('error', function (e) {
-        logger.error(e);
-        res.render('index', { count: '検索' });
-    });
-});
+routes.set(appRoot, app);
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function () {
-    logger.info('Express server listening on port ' + app.get('port'));
+    appLogger.info('Express server listening on port ' + app.get('port'));
 });
 
 process.on('uncaughtException', function (err) {
-    logger.error('uncaughtException => ' + err);
+    appLogger.error('uncaughtException => ' + err);
 });

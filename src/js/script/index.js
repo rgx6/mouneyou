@@ -1,13 +1,18 @@
 (function () {
     // 'use strict';
 
+    var url = location.origin + location.pathname;
+
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
             + '&hashtags=' + encodeURI('てゆうかもう寝よう')
             + '&text={src}'
-            + '&url=' + encodeURI(location.href);
+            + '&url=' + encodeURI(url);
 
-    var tweetListUrl = 'https://twitter.com/search?q=' + encodeURI(location.href);
+    var tweetListUrl = 'https://twitter.com/search?q=' + encodeURI(url);
+
+    var updateTimer;
+    var updateInterval = 2000;
 
     var stamps = [
         {
@@ -160,6 +165,15 @@
         setItem(item);
     });
 
+    document.getElementById('sync').addEventListener('click', function () {
+        'use strict';
+        // console.log('#sync click');
+
+        var message = '複数のブラウザで使用する方向け\n\nすたんぷのならび順を同期させるためのURLを発行します。';
+        var confirm = window.confirm(message);
+        if (confirm) beginSync();
+    });
+
     document.getElementById('sort').addEventListener('click', function () {
         'use strict';
         // console.log('#sort click');
@@ -167,12 +181,12 @@
         var items = $('#items');
         var modelabel = document.getElementById('modelabel');
 
-        var isDisabled = items.sortable('instance') == null || items.sortable('option', 'disabled');
+        var isDisabled = items.sortable('instance') == null;
         if (isDisabled) {
             items.sortable({
                 cursor: 'move',
                 delay: 300,
-                items: 'div:not(.notsortable)',
+                items: 'div.sortable',
                 tolerance: 'pointer',
                 start: function (event, ui) {
                     // console.log('start');
@@ -206,6 +220,8 @@
 
         var sortButton = document.getElementById('sort');
 
+        if (0 < _id.length) document.getElementById('sync').style.display = 'none';
+
         var stampOrder = loadStampOrder();
 
         for (var i = 0; i < stamps.length; i++) {
@@ -218,6 +234,7 @@
             var div = document.createElement('div');
             div.setAttribute('index', index);
             div.style.backgroundImage = 'url("' + stamps[index].image + '")';
+            div.classList.add('sortable');
             if (stamps[index].isCover) div.classList.add('size-cover');
             div.addEventListener('click', function () {
                 // console.log('#items div click');
@@ -229,6 +246,8 @@
 
             document.getElementById('items').insertBefore(div, sortButton);
         }
+
+        getTweetCount();
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
         refreshArrow();
@@ -286,8 +305,7 @@
         'use strict';
         // console.log('loadStampOrder');
 
-        var stampOrder = localStorage.stampOrder ? JSON.parse(localStorage.stampOrder) : [];
-        return stamps.length < stampOrder.length ? [] : stampOrder;
+        return 0 < _stampOrder.length ? _stampOrder : getStampOrder();
     }
 
     function saveStampOrder () {
@@ -297,6 +315,91 @@
         var stampOrder = $('#items')
                 .sortable('toArray', { attribute: 'index' })
                 .map(function (x) { return +x; });
-        localStorage.stampOrder = JSON.stringify(stampOrder);
+
+        localStorage.setItem('stampOrder', JSON.stringify(stampOrder));
+
+        if (0 < _id.length) {
+            clearTimeout(updateTimer);
+            updateTimer = setTimeout(function () {
+                updateOrder(stampOrder);
+            }, updateInterval);
+        }
     };
+
+    function getStampOrder () {
+        'use strict';
+        // console.log('getStampOrder');
+
+        var stampOrder = localStorage.getItem('stampOrder') ?
+                JSON.parse(localStorage.getItem('stampOrder')) :
+                [];
+        return stamps.length < stampOrder.length ? [] : stampOrder;
+    }
+
+    function beginSync () {
+        'use strict';
+        // console.log('beginSync');
+
+        var order = getStampOrder();
+
+        $.ajax({
+            type: 'POST',
+            url: '/beginsync',
+            contentType: 'application/json',
+            data: JSON.stringify({ stampOrder: order }),
+            dataType: 'json',
+            cache: false,
+            async: false,
+            success: function (json) {
+                alert('同期用のURLに移動します。\n\n移動先のURLを使用するとブラウザ間でならび順が同期されます。');
+                location.href = url + '?id=' + json.id;
+            },
+            error: function () {
+                alert('エラー');
+            }
+        });
+    }
+
+    function updateOrder (stampOrder) {
+        'use strict';
+        // console.log('updateOrder');
+
+        $.ajax({
+            type: 'POST',
+            url: '/updateorder',
+            contentType: 'application/json',
+            data: JSON.stringify({ id: _id, stampOrder: stampOrder }),
+            dataType: 'json',
+            cache: false,
+            success: function () {
+                $('#updated').fadeIn(500, function () {
+                    setTimeout(function () {
+                        $('#updated').fadeOut(500);
+                    }, 1000);
+                });
+            },
+            error: function () {
+                alert('エラー');
+            }
+        });
+    }
+
+    function getTweetCount () {
+        'use strict';
+        // console.log('getTweetCount');
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://urls.api.twitter.com/1/urls/count.json?url=' + url,
+            dataType: 'jsonp',
+            jsonpCallback: 'callback',
+            cache: false,
+            success: function (json) {
+                document.getElementById('count').appendChild(document.createTextNode(json.count));
+            },
+            error: function () {
+                document.getElementById('count').appendChild(document.createTextNode('検索'));
+            }
+        });
+    }
 })();

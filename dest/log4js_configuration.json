@@ -3,10 +3,17 @@
         { "type": "console" },
         {
             "type": "file",
-            "filename": "log/log",
+            "filename": "log/application.log",
             "maxLogSize": 1000000,
             "backups": 50,
-            "category": ["log", "console"]
+            "category": ["appLog", "console"]
+        },
+        {
+            "type": "file",
+            "filename": "log/access.log",
+            "maxLogSize": 1000000,
+            "backups": 50,
+            "category": ["accessLog"]
         }
     ],
     "replaceConsole": true
