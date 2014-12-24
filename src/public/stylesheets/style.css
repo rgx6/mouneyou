@@ -58,7 +58,7 @@ body {
   background-size: auto;
 }
 
-.items .tweet p {
+.items p {
   position: absolute;
   text-align: center;
   color: #fff;
@@ -75,6 +75,11 @@ body {
 
 .items .sorting {
   border: solid 3px #55acee;
+}
+
+.starap {
+  position: relative;
+  background-image: url("/images/starap.jpg");
 }
 
 .sort label {

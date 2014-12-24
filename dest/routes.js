@@ -35,7 +35,7 @@ var index = function (req, res) {
         }
 
         if (!doc) {
-            logger.warn('id not registered : ' + id);
+            logger.error('id not registered : ' + id);
             res.send(404);
             return;
         }
