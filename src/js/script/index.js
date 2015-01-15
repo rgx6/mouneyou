@@ -145,6 +145,18 @@
         }, {
             image: '/images/stamp042.png',
             src: 'http://pic.twitter.com/i0LrCSSpzB'
+        }, {
+            image: '/images/stamp043.png',
+            src: 'http://pic.twitter.com/YaskkVfYyo'
+        }, {
+            image: '/images/stamp044.png',
+            src: 'http://pic.twitter.com/Hg3WV1gKNj'
+        }, {
+            image: '/images/stamp045.png',
+            src: 'http://pic.twitter.com/e2idANGP7m'
+        }, {
+            image: '/images/stamp046.png',
+            src: 'http://pic.twitter.com/8ai4ePmRbt'
         }
     ];
 
