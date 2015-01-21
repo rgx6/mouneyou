@@ -32,7 +32,7 @@ ga('send', 'pageview');
 (function () {
     // 'use strict';
 
-    var url = location.origin + location.pathname;
+    var url = location.protocol + '//' + location.host + location.pathname;
 
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
@@ -222,7 +222,7 @@ ga('send', 'pageview');
         // console.log('#sort click');
 
         var items = $('#items');
-        var modelabel = document.getElementById('modelabel');
+        var modelabel = $('#modelabel');
 
         var isDisabled = items.sortable('instance') == null;
         if (isDisabled) {
@@ -242,15 +242,15 @@ ga('send', 'pageview');
                 },
             });
 
-            modelabel.classList.add('on');
-            modelabel.classList.remove('off');
-            modelabel.textContent = 'ON';
+            modelabel.addClass('on');
+            modelabel.removeClass('off');
+            modelabel.text('ON');
         } else {
             // disableではスワイプによるスクロールができなかったのでdestroyしている。
             items.sortable('destroy');
-            modelabel.classList.add('off');
-            modelabel.classList.remove('on');
-            modelabel.textContent = 'OFF';
+            modelabel.addClass('off');
+            modelabel.removeClass('on');
+            modelabel.text('OFF');
         }
     });
 
@@ -261,7 +261,7 @@ ga('send', 'pageview');
         var item = getRandomItem();
         setItem(item);
 
-        var sortButton = document.getElementById('sort');
+        var sortButton = $('#sort');
 
         if (0 < _id.length) document.getElementById('sync').style.display = 'none';
 
@@ -274,20 +274,20 @@ ga('send', 'pageview');
             } else {
                 index = i;
             }
-            var div = document.createElement('div');
-            div.setAttribute('index', index);
-            div.style.backgroundImage = 'url("' + stamps[index].image + '")';
-            div.classList.add('sortable');
-            if (stamps[index].isCover) div.classList.add('size-cover');
-            div.addEventListener('click', function () {
+            var div = $('<div>');
+            div.attr('index', index);
+            div.css('background-image', 'url("' + stamps[index].image + '")');
+            div.addClass('sortable');
+            if (stamps[index].isCover) div.addClass('size-cover');
+            div.on('click', function () {
                 // console.log('#items div click');
 
-                var index = this.getAttribute('index');
+                var index = $(this).attr('index');
                 var item = stamps[index];
                 setItem(item);
             });
 
-            document.getElementById('items').insertBefore(div, sortButton);
+            div.insertBefore(sortButton);
         }
 
         getTweetCount();
@@ -308,12 +308,12 @@ ga('send', 'pageview');
         'use strict';
         // console.log('setItem');
 
-        var selected = document.getElementById('selected');
-        selected.style.backgroundImage = 'url("' + item.image + '")';
+        var selected = $('#selected');
+        selected.css('background-image', 'url("' + item.image + '")');
         if (item.isCover) {
-            selected.classList.add('size-cover');
+            selected.addClass('size-cover');
         } else {
-            selected.classList.remove('size-cover');
+            selected.removeClass('size-cover');
         }
         document.getElementById('tweet').setAttribute('href', tweetUrl.replace('{src}', item.src));
     }
@@ -324,23 +324,23 @@ ga('send', 'pageview');
 
         var width = window.innerWidth;
 
-        var tweetobj = document.getElementById('tweet');
+        var tweetobj = $('#tweet');
         if (width < 440) {
-            tweetobj.classList.remove('arrowtweetleft');
-            tweetobj.classList.add('arrowtweettop');
+            tweetobj.removeClass('arrowtweetleft');
+            tweetobj.addClass('arrowtweettop');
         } else {
-            tweetobj.classList.remove('arrowtweettop');
-            tweetobj.classList.add('arrowtweetleft');
+            tweetobj.removeClass('arrowtweettop');
+            tweetobj.addClass('arrowtweetleft');
         }
 
-        var countobj = document.getElementById('count');
+        var countobj = $('#count');
         if (width < 220 ||
             (440 <= width && width < 550)) {
-            countobj.classList.remove('arrowcountleft');
-            countobj.classList.add('arrowcounttop');
+            countobj.removeClass('arrowcountleft');
+            countobj.addClass('arrowcounttop');
         } else {
-            countobj.classList.remove('arrowcounttop');
-            countobj.classList.add('arrowcountleft');
+            countobj.removeClass('arrowcounttop');
+            countobj.addClass('arrowcountleft');
         }
     }
 
