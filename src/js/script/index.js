@@ -5,7 +5,7 @@
 
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
-            + '&hashtags=' + '%E3%81%A6%E3%82%86%E3%81%86%E3%81%8B%E3%82%82%E3%81%86%E5%AF%9D%E3%82%88%E3%81%86'
+            + '&hashtags=' + '%E3%81%A6%E3%82%86%E3%81%86%E3%81%8B%E3%82%82%E3%81%86%E5%AF%9D%E3%82%88%E3%81%86,'
             + '&text={src}'
             + '&url=' + encodeURI(url);
 
