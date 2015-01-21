@@ -322,7 +322,7 @@ ga('send', 'pageview');
         'use strict';
         // console.log('refreshArrow');
 
-        var width = window.innerWidth;
+        var width = document.body.clientWidth;
 
         var tweetobj = $('#tweet');
         if (width < 440) {
