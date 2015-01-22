@@ -82,6 +82,16 @@ body {
   background-image: url("/images/starap.jpg");
 }
 
+a.sta4koma {
+  position: relative;
+  background-image: url("/images/sta4koma.png");
+  background-size: 80%;
+}
+
+.sta4koma p {
+  color: #000;
+}
+
 .sort label {
   display: block;
   margin: 22px 0;
