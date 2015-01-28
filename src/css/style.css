@@ -159,6 +159,14 @@ a.sta4koma {
   margin-left: -10px;
 }
 
+.anime {
+  position: fixed;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+}
+
 .clearboth {
   clear: both;
 }

@@ -205,6 +205,8 @@ ga('send', 'pageview');
 
         var item = getRandomItem();
         setItem(item);
+
+        animate();
     });
 
     document.getElementById('sync').addEventListener('click', function () {
@@ -443,5 +445,30 @@ ga('send', 'pageview');
                 document.getElementById('count').appendChild(document.createTextNode('検索'));
             }
         });
+    }
+
+    function animate () {
+        'use strict';
+        // console.log('animate');
+
+        var size = 200;
+
+        var left = document.documentElement.clientWidth + size;
+        var top = Math.floor(Math.random() * (document.documentElement.clientHeight - size));
+        var img = $('<div>');
+        img.addClass('anime');
+        img.css('background-image', 'url("/images/anime007.png")');
+        img.css({
+            width: size,
+            height: size,
+            left: left,
+            top: top,
+        });
+        $('body').append(img);
+
+        var speed = Math.floor(Math.random() * 1500) + 1000;
+        img.animate({
+            left: -2 * size,
+        }, speed, function () { img.remove(); });
     }
 })();
