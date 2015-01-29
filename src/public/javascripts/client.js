@@ -190,6 +190,19 @@ ga('send', 'pageview');
         }
     ];
 
+    var bullets = [
+        { image: '/images/anime005.png' },
+        { image: '/images/anime007.png' },
+        { image: '/images/anime012.png' },
+        { image: '/images/anime016.png' },
+        { image: '/images/anime027.png' },
+        { image: '/images/anime029.png' },
+        { image: '/images/anime036.png' },
+        { image: '/images/anime037.png' },
+        { image: '/images/anime043.png' },
+        { image: '/images/anime044.png' }
+    ];
+
     init();
 
     window.addEventListener('resize', function () {
@@ -203,10 +216,11 @@ ga('send', 'pageview');
         'use strict';
         // console.log('#title click');
 
-        var item = getRandomItem();
-        setItem(item);
+        var stamp = getRandomStamp();
+        setItem(stamp);
 
-        animate();
+        var bullet = getRandomBullet();
+        launch(bullet);
     });
 
     document.getElementById('sync').addEventListener('click', function () {
@@ -259,8 +273,8 @@ ga('send', 'pageview');
         // 'use strict';
         // console.log('init');
 
-        var item = getRandomItem();
-        setItem(item);
+        var stamp = getRandomStamp();
+        setItem(stamp);
 
         var sortButton = $('#sort');
 
@@ -297,12 +311,20 @@ ga('send', 'pageview');
         refreshArrow();
     }
 
-    function getRandomItem () {
+    function getRandomStamp () {
         'use strict';
-        // console.log('getRandom');
+        // console.log('getRandomStamp');
 
         var index = Math.floor(Math.random() * stamps.length);
         return stamps[index];
+    }
+
+    function getRandomBullet () {
+        'use strict';
+        // console.log('getRandomBullet');
+
+        var index = Math.floor(Math.random() * bullets.length);
+        return bullets[index];
     }
 
     function setItem (item) {
@@ -447,17 +469,17 @@ ga('send', 'pageview');
         });
     }
 
-    function animate () {
+    function launch (bullet) {
         'use strict';
-        // console.log('animate');
+        // console.log('launch');
 
         var size = 200;
 
         var left = document.documentElement.clientWidth + size;
-        var top = Math.floor(Math.random() * (document.documentElement.clientHeight - size));
+        var top = Math.floor(Math.random() * document.documentElement.clientHeight - size / 2);
         var img = $('<div>');
-        img.addClass('anime');
-        img.css('background-image', 'url("/images/anime007.png")');
+        img.addClass('bullet');
+        img.css('background-image', 'url("' + bullet.image + '")');
         img.css({
             width: size,
             height: size,
@@ -466,7 +488,7 @@ ga('send', 'pageview');
         });
         $('body').append(img);
 
-        var speed = Math.floor(Math.random() * 1500) + 1000;
+        var speed = Math.floor(Math.random() * 2500) + 500;
         img.animate({
             left: -2 * size,
         }, speed, function () { img.remove(); });
