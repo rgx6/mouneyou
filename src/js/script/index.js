@@ -444,7 +444,7 @@
 
         var size = 200;
 
-        var left = document.documentElement.clientWidth + size;
+        var left = document.documentElement.clientWidth;
         var top = Math.floor(Math.random() * document.documentElement.clientHeight - size / 2);
         var img = $('<div>');
         img.addClass('bullet');
@@ -459,7 +459,7 @@
 
         var speed = Math.floor(Math.random() * 2500) + 500;
         img.animate({
-            left: -2 * size,
-        }, speed, function () { img.remove(); });
+            left: -1 * size,
+        }, speed, 'linear', function () { img.remove(); });
     }
 })();
