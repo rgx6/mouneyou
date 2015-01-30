@@ -309,6 +309,9 @@ ga('send', 'pageview');
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
         refreshArrow();
+
+        // 開きっぱなし対策
+        setTimeout(function () { location.reload(); }, 24 * 3600 * 1000);
     }
 
     function getRandomStamp () {
