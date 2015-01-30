@@ -15,6 +15,7 @@ var app = express();
 app.set('port', process.env.PORT || 3003);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.use(express.compress());
 app.use(express.bodyParser());
 app.use(log4js.connectLogger(accessLogger, {
     // express 閾値ではなく指定したログレベルで記録される
@@ -35,7 +36,7 @@ app.use(log4js.connectLogger(accessLogger, {
     })
 }));
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 7 * 24 * 3600 * 1000 }));
 
 // NODE_ENV=production node server.js  default:development
 if (app.get('env') === 'development') {
