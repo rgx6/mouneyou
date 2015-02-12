@@ -169,7 +169,7 @@
         { image: '/images/anime007.png' },
         { image: '/images/anime012.png' },
         { image: '/images/anime016.png' },
-        { image: '/images/anime027.png' },
+        { image: '/images/anime027.gif' },
         { image: '/images/anime029.gif' },
         { image: '/images/anime036.png' },
         { image: '/images/anime037.png' },
