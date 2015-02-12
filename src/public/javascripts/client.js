@@ -44,6 +44,11 @@ ga('send', 'pageview');
     var updateTimer;
     var updateInterval = 2000;
 
+    var launchCount = 0;
+
+    var bodyElement = $('body');
+    var launchCounterElement = $('#launchCounter');
+
     var stamps = [
         {
             image: '/images/stamp001.png',
@@ -490,11 +495,14 @@ ga('send', 'pageview');
             top: top,
             'z-index': 1,
         });
-        $('body').append(img);
+        bodyElement.append(img);
 
         var speed = Math.floor(Math.random() * 2500) + 500;
         img.animate({
             left: -1 * size,
         }, speed, 'linear', function () { img.remove(); });
+
+        launchCount += 1;
+        launchCounterElement.text(launchCount);
     }
 })();
