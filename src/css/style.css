@@ -15,6 +15,12 @@ body {
 .title a {
   font-size: 30px;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
+  user-select:         none; /* CSS3          */
+  -moz-user-select:    none; /* Firefox       */
+  -webkit-user-select: none; /* Safari Chrome */
+  -ms-user-select:     none; /* IE10以降      */
 }
 
 .items {

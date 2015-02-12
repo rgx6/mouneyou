@@ -488,6 +488,7 @@ ga('send', 'pageview');
             height: size,
             left: left,
             top: top,
+            'z-index': 1,
         });
         $('body').append(img);
 
