@@ -46,6 +46,7 @@ body {
 }
 
 .items .selected {
+  position: relative;
   width: 320px;
   height: 320px;
   cursor: auto;
@@ -71,6 +72,19 @@ body {
   line-height: 25px;
   font-size: 25px;
   color: #000;
+}
+
+.items .selected .taInfo p.taReset {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 25px;
+  font-size: 20px;
+  margin: 0;
+  border-radius: 20px;
+  background-color: #ccc;
+  cursor: pointer;
 }
 
 .items .tweet {

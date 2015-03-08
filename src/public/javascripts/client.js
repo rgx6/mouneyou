@@ -286,6 +286,13 @@ ga('send', 'pageview');
         }
     });
 
+    document.getElementById('taReset').addEventListener('click', function () {
+        'use strict';
+        // console.log('#taReset click');
+
+        initTAMode(taGoalCount);
+    });
+
     function init() {
         // 'use strict';
         // console.log('init');
@@ -563,7 +570,20 @@ ga('send', 'pageview');
         $('#launchCounter').css('display', 'none');
 
         $('#taInfo').css('display', 'block');
+
+        clearInterval(taTimer);
+        taTimer = null;
+
+        launchCount = 0;
+        prevLaunchCount = 0;
+        taStartTime = 0;
+        taScore = 0;
+        taMaxCps = 0;
+
         displayTAInfo();
+
+        var stamp = getRandomStamp();
+        setItem(stamp);
     }
 
     function displayTAInfo (isEnd) {
