@@ -7,6 +7,13 @@
             + '?lang=ja'
             + '&text={src}+' + encodeURI(url)
             + '+%23%E3%81%A6%E3%82%86%E3%81%86%E3%81%8B%E3%82%82%E3%81%86%E5%AF%9D%E3%82%88%E3%81%86';
+    var tweetTAUrl = 'https://twitter.com/intent/tweet'
+            + '?lang=ja'
+            + '&text=' + encodeURI('_taGoalCount_+匹のすたちゅーを+_taTime_+秒でとばしました。')
+            + encodeURI('平均+_taAvgCps_+すた/秒。最高+_taMaxCps_+すた/秒。')
+            + '+' + encodeURI(url) + '%3fta=_taGoalCount_'
+            + '+%23' + encodeURI('てゆうかもう寝よう')
+            + '+%23' + encodeURI('すたとばしTA');
 
     var tweetListUrl = 'https://twitter.com/search?q=' + encodeURI(url);
 
@@ -14,6 +21,14 @@
     var updateInterval = 2000;
 
     var launchCount = 0;
+    var prevLaunchCount = 0;
+
+    // TA用
+    var taTimer;
+    var taStartTime = 0;
+    var taScore = 0;
+    var taMaxCps = 0;
+    var taGoalCount = 0;
 
     var bodyElement = $('body');
     var launchCounterElement = $('#launchCounter');
@@ -190,9 +205,6 @@
         'use strict';
         // console.log('#title click');
 
-        var stamp = getRandomStamp();
-        setItem(stamp);
-
         var bullet = getRandomBullet();
         launch(bullet);
     });
@@ -286,6 +298,13 @@
 
         // 開きっぱなし対策
         setTimeout(function () { location.reload(); }, 24 * 3600 * 1000);
+
+        var q = {};
+        location.search.substr(1).split('&').forEach(function (p) {
+            var param = p.split('=');
+            q[param[0]] = param.length === 2 ? param[1] : '';
+        });
+        if (!isNaN(q['ta']) && 0 < q['ta'] - 0) initTAMode(q['ta'] - 0);
     }
 
     function getRandomStamp () {
@@ -450,6 +469,14 @@
         'use strict';
         // console.log('launch');
 
+        // TA開始処理
+        if (taTimer == null && 0 < taGoalCount) {
+            taStartTime = new Date().getTime();
+            taTimer = setInterval(function () {
+                displayTAInfo();
+            }, 1000);
+        }
+
         var size = 200;
 
         var left = document.documentElement.clientWidth;
@@ -473,5 +500,65 @@
 
         launchCount += 1;
         launchCounterElement.text(launchCount);
+
+        if (0 < taGoalCount) {
+            if (launchCount < taGoalCount) {
+                // TA中
+                $('#taCount').text(launchCount + ' / ' + taGoalCount + ' すた');
+            } else if (launchCount === taGoalCount) {
+                // TA終了処理
+                clearInterval(taTimer);
+                displayTAInfo(true);
+                var tweet = tweetTAUrl
+                        .replace(/_taGoalCount_/g, taGoalCount)
+                        .replace('_taTime_', taScore)
+                        .replace('_taAvgCps_', (taGoalCount / taScore).toFixed(3))
+                        .replace('_taMaxCps_', taMaxCps);
+                $('#tweet').attr('href', tweet);
+            } else {
+                // TA終了後
+            }
+        }
+    }
+
+    function initTAMode (goalCount) {
+        'use strict';
+        // console.log('initTAMode');
+
+        taGoalCount = goalCount;
+
+        $('#sort').css('display', 'none');
+        $('#sync').css('display', 'none');
+        $('#launchCounter').css('display', 'none');
+
+        $('#taInfo').css('display', 'block');
+        displayTAInfo();
+    }
+
+    function displayTAInfo (isEnd) {
+        'use strict';
+        // console.log('displayTAInfo');
+
+        var cps = launchCount - prevLaunchCount;
+        if (taMaxCps < cps) taMaxCps = cps;
+
+        prevLaunchCount = launchCount;
+
+        var time;
+        if (taStartTime === 0) {
+            time = 0;
+        } else if (isEnd) {
+            taScore = (new Date().getTime() - taStartTime) / 1000;
+            time = taScore;
+        } else {
+            time = Math.floor((new Date().getTime() - taStartTime) / 1000);
+        }
+
+        $('#taCount').text(launchCount + ' / ' + taGoalCount + ' すた');
+        $('#taTime').text(time + ' 秒');
+        $('#taCps').text(cps + ' すた/秒');
+        var avgCps = time === 0 ? 0 : (launchCount / time).toFixed(3);
+        $('#taAvgCps').text('平均 ' + avgCps + ' すた/秒');
+        $('#taMaxCps').text('最高 ' + taMaxCps + ' すた/秒');
     }
 })();
