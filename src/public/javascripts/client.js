@@ -45,6 +45,9 @@ ga('send', 'pageview');
             + '+' + encodeURI(url) + '%3fta=_taGoalCount_'
             + '+%23' + encodeURI('てゆうかもう寝よう')
             + '+%23' + encodeURI('すたとばしTA');
+    var tweetBirthdayUrl = 'https://twitter.com/intent/tweet'
+            + '?lang=ja'
+            + '&text=' + encodeURI('@starchoo すたちゅー6歳の誕生日おめでとう！');
 
     var tweetListUrl = 'https://twitter.com/search?q=' + encodeURI(url);
 
@@ -334,6 +337,8 @@ ga('send', 'pageview');
         document.getElementById('count').setAttribute('href', tweetListUrl);
         refreshArrow();
 
+        initBirthday();
+
         // 開きっぱなし対策
         setTimeout(function () { location.reload(); }, 24 * 3600 * 1000);
 
@@ -611,5 +616,16 @@ ga('send', 'pageview');
         var avgCps = time === 0 ? 0 : (launchCount / time).toFixed(3);
         $('#taAvgCps').text('平均 ' + avgCps + ' すた/秒');
         $('#taMaxCps').text('最高 ' + taMaxCps + ' すた/秒');
+    }
+
+    function initBirthday () {
+        'use strict';
+        // console.log('initBirthday');
+
+        var now = new Date();
+        if (now.getFullYear() === 2015 && now.getMonth() + 1 === 3 && now.getDate() === 10) {
+            $('#birthday').attr('href', tweetBirthdayUrl);
+            $('#birthday').css('display', 'block');
+        }
     }
 })();

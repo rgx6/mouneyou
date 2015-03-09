@@ -8,8 +8,8 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title="てゆうかもう寝よう。"
     link(rel="icon", href="/images/favicon.png", type="image/png")
-    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css")
-    script(type="application/javascript", src="/javascripts/client.js", defer)
+    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20150310")
+    script(type="application/javascript", src="/javascripts/client.js?d=20150310", defer)
     script.
       var _id = "#{id}";
       var _stampOrder = !{JSON.stringify(stampOrder)};
@@ -29,6 +29,12 @@ html
       a#tweet.tweet.arrow(target="_blank")
         p ツイート
       a#count.count.arrow(target="_blank")
+      a#birthday.birthday(target="_blank")
+        p 3月10日は
+          br
+          | すたちゅー
+          br
+          | 6歳の誕生日
       a.starap(target="_blank", href="http://alice-books.com/item/show/2888-2")
         p グッズ通販
       div#sort.sort
