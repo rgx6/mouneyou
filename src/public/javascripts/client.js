@@ -210,6 +210,9 @@ ga('send', 'pageview');
         }, {
             image: '/images/stamp046.png',
             src: 'http://pic.twitter.com/8ai4ePmRbt'
+        }, {
+            image: '/images/stamp047.png',
+            src: 'http://pic.twitter.com/b8eOJc3rdn'
         }
     ];
 
