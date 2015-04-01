@@ -327,6 +327,13 @@ ga('send', 'pageview');
                 var index = $(this).attr('index');
                 var item = stamps[index];
                 setItem(item);
+
+                // エイプリルフール
+                var today = new Date();
+                if (today.getMonth() === 3 && today.getDate() === 1) {
+                    var bullet = getRandomBullet();
+                    launch(bullet);
+                }
             });
 
             div.insertBefore(sortButton);
