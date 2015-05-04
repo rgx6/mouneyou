@@ -135,6 +135,19 @@ a.sta4koma {
   color: #000;
 }
 
+a.stabook {
+  position: relative;
+  background-image: url("/images/stabook.png");
+}
+
+a.statobashi {
+  position: relative;
+}
+
+.statobashi p {
+  color: #000;
+}
+
 .sort label {
   display: block;
   margin: 22px 0;
