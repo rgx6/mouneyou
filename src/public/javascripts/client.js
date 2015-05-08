@@ -36,15 +36,15 @@ ga('send', 'pageview');
 
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
-            + '&text={src}' + '+' + encodeURIComponent(url)
-            + '+' + encodeURIComponent('#てゆうかもう寝よう');
+            + '&text={src}' + '%20' + encodeURIComponent(url)
+            + '%20' + encodeURIComponent('#てゆうかもう寝よう');
     var tweetTAUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
             + '&text=' + encodeURIComponent('_taGoalCount_ 匹のすたちゅーを _taTime_ 秒でとばしました。')
             + encodeURIComponent('平均 _taAvgCps_ すた/秒。最高 _taMaxCps_ すた/秒。')
-            + '+' + encodeURIComponent(url) + '%3fta=_taGoalCount_'
-            + '+' + encodeURIComponent('#てゆうかもう寝よう')
-            + '+' + encodeURIComponent('#すたとばしTA');
+            + '%20' + encodeURIComponent(url) + '%3fta=_taGoalCount_'
+            + '%20' + encodeURIComponent('#てゆうかもう寝よう')
+            + '%20' + encodeURIComponent('#すたとばしTA');
 
     var tweetListUrl = 'https://twitter.com/search?q=' + encodeURIComponent(url);
 
