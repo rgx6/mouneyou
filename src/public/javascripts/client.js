@@ -235,7 +235,9 @@ ga('send', 'pageview');
         { image: '/images/anime036.png' },
         { image: '/images/anime037.png' },
         { image: '/images/anime043.png' },
-        { image: '/images/anime044.png' }
+        { image: '/images/anime044.png' },
+        { image: '/images/anime048.png' },
+        { image: '/images/anime051.png' }
     ];
 
     init();
