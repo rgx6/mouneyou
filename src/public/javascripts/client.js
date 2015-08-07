@@ -37,7 +37,8 @@ ga('send', 'pageview');
     var tweetUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
             + '&text={src}' + '%20' + encodeURIComponent(url)
-            + '%20' + encodeURIComponent('#てゆうかもう寝よう');
+            + '%20' + encodeURIComponent('#てゆうかもう寝よう')
+            + '%20' + encodeURIComponent('#すたンプ');
     var tweetTAUrl = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
             + '&text=' + encodeURIComponent('_taGoalCount_ 匹のすたちゅーを _taTime_ 秒でとばしました。')
