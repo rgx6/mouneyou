@@ -223,6 +223,15 @@ ga('send', 'pageview');
         }, {
             image: '/images/stamp051.png',
             src: 'http://pic.twitter.com/LUKtLqZeve'
+        }, {
+            image: '/images/stamp052.png',
+            src: 'http://pic.twitter.com/v7l5tGeSdq'
+        }, {
+            image: '/images/stamp053.png',
+            src: 'http://pic.twitter.com/uWYAxKQpmF'
+        }, {
+            image: '/images/stamp054.png',
+            src: 'http://pic.twitter.com/a1O9gQjnx6'
         }
     ];
 
