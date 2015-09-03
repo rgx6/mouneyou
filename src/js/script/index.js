@@ -21,6 +21,8 @@
     var updateTimer;
     var updateInterval = 2000;
 
+    var scale = 0.5;
+
     var launchCount = 0;
     var prevLaunchCount = 0;
 
@@ -519,26 +521,27 @@
             }, 1000);
         }
 
-        var size = 200;
+        var img = new Image();
+        img.onload = function () {
+            var width = this.width * scale;
+            var height = this.height * scale;
+            var left = document.documentElement.clientWidth;
+            var top = Math.floor(Math.random() * document.documentElement.clientHeight - height / 2);
 
-        var left = document.documentElement.clientWidth;
-        var top = Math.floor(Math.random() * document.documentElement.clientHeight - size / 2);
-        var img = $('<div>');
-        img.addClass('bullet');
-        img.css('background-image', 'url("' + bullet.image + '")');
-        img.css({
-            width: size,
-            height: size,
-            left: left,
-            top: top,
-            'z-index': 1,
-        });
-        bodyElement.append(img);
+            this.setAttribute('width', width);
+            this.setAttribute('height', height);
+            this.style.left = left + 'px';
+            this.style.top = top + 'px';
+            this.className = 'bullet';
 
-        var speed = Math.floor(Math.random() * 2500) + 500;
-        img.animate({
-            left: -1 * size,
-        }, speed, 'linear', function () { img.remove(); });
+            bodyElement.append(this);
+
+            var speed = Math.floor(Math.random() * 2500) + 500;
+            $(this).animate({
+                left: -1 * width,
+            }, speed, 'linear', function () { $(this).remove(); });
+        };
+        img.src = bullet.image;
 
         launchCount += 1;
         launchCounterElement.text(launchCount);

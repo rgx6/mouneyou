@@ -229,10 +229,7 @@ a.statobashi {
 
 .bullet {
   position: fixed;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: transparent;
+  z-index: 1;
 }
 
 .clearboth {
