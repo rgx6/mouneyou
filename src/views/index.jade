@@ -3,13 +3,13 @@ html
   head
     meta(charset="utf-8")
     meta(http-equiv="Content-Language", content="ja")
-    meta(name="keywords", content="すたちゅー,スタチュー,てゆうかもう寝よう,ツイッター,Twitter,スタンプ")
-    meta(name="description", content="不思議な生物すたちゅーのツイッター用すたんぷです。")
+    meta(name="keywords", content="すたちゅー,スタチュー,てゆうかもう寝よう,ツイッター,Twitter,スタンプ,すたンプ")
+    meta(name="description", content="不思議な生物すたちゅーのツイッター用すたンプです。")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title="てゆうかもう寝よう。"
     link(rel="icon", href="/images/favicon.png", type="image/png")
-    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20150401")
-    script(type="application/javascript", src="/javascripts/client.js?d=20150807", defer)
+    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20150906")
+    script(type="application/javascript", src="/javascripts/client.js?d=20150906", defer)
     script.
       var _id = "#{id}";
       var _stampOrder = !{JSON.stringify(stampOrder)};
@@ -26,13 +26,23 @@ html
           p#taAvgCps
           p#taMaxCps
           p#taReset.taReset リセット
+        div#onlineInfo.taInfo
+          p すたとばし おんらいん
+          p みんなのすたちゅー
+          p#onlineClickCount
+          p あなたのすたちゅー
+          p#onlineLocalClickCount
+          p#onlineUserCount
       a#tweet.tweet.arrow(target="_blank")
         p ツイート
       a#count.count.arrow(target="_blank")
-      div#sort.sort
+      div#sort.mode
         label ならべかえ
-        label#modelabel.modelabel.off OFF
+        label#sortlabel.modelabel.off OFF
       div#sync.sync ならび同期
+      div#online.mode
+        label おんらいん
+        label#onlinelabel.modelabel.off OFF
       a.sta4koma(target="_blank", href="http://sta4koma.rgx6.com/")
         p 4コマまんが
       a.stabook(target="_blank", href="http://www.pixiv.net/member_illust.php?mode=medium&illust_id=50201705")

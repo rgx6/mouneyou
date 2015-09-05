@@ -7,10 +7,11 @@
   },
   "dependencies": {
     "express": "~3.4.7",
-    "log4js": "~0.6.21",
     "jade": "~1.7.0",
+    "log4js": "~0.6.21",
+    "mongoose": "~3.8.20",
     "node-uuid": "~1.4.2",
-    "mongoose": "~3.8.20"
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "gulp": "~3.8.8",

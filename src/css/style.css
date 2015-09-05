@@ -87,6 +87,24 @@ body {
   cursor: pointer;
 }
 
+.items .selected .onlineInfo {
+  cursor: auto;
+  display: none;
+  width: 320px;
+  height: 320px;
+  background-color: #fff;
+  opacity: 0.95;
+}
+
+.items .selected .onlineInfo p {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 25px;
+  font-size: 25px;
+  color: #000;
+}
+
 .items .tweet {
   position: relative;
   background-color: #55acee;
@@ -148,7 +166,7 @@ a.statobashi {
   color: #000;
 }
 
-.sort label {
+.mode label {
   display: block;
   margin: 22px 0;
   text-align: center;

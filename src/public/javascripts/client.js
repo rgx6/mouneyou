@@ -46,23 +46,43 @@ ga('send', 'pageview');
             + '%20' + encodeURIComponent(url) + '%3fta=_taGoalCount_'
             + '%20' + encodeURIComponent('#てゆうかもう寝よう')
             + '%20' + encodeURIComponent('#すたとばしTA');
+    var tweetOnlineUrl = 'https://twitter.com/intent/tweet'
+            + '?lang=ja'
+            + '&text=' + encodeURIComponent('_onlineClickCount_ 匹のすたちゅーがとばされました。')
+            + '%20' + encodeURIComponent(url)
+            + '%20' + encodeURIComponent('#てゆうかもう寝よう')
+            + '%20' + encodeURIComponent('#すたとばしおんらいん');
 
     var tweetListUrl = 'https://twitter.com/search?q=' + encodeURIComponent(url);
 
+    // ならべかえ保存タイミング制御用
     var updateTimer;
     var updateInterval = 2000;
 
-    var scale = 0.5;
+    // アニメーション表示倍率
+    var defaultScale = 0.5;
+    var onlineScale  = 0.35;
 
-    var launchCount = 0;
+    // アニメーション回数
+    var launchCount     = 0;
     var prevLaunchCount = 0;
 
     // TA用
     var taTimer;
     var taStartTime = 0;
-    var taScore = 0;
-    var taMaxCps = 0;
+    var taScore     = 0;
+    var taMaxCps    = 0;
     var taGoalCount = 0;
+
+    // オンラインモード用
+    var socket;
+    var isOnlineMode                 = false;
+    var onlineTimer;
+    var onlineSendClickCountInterval = 1000;
+    var onlineClickCount             = 0;
+    var onlineClickCountFromSend     = 0;
+    var onlineLocalClickCount        = 0;
+    var onlineDiffMax                = 100;
 
     var bodyElement = $('body');
     var launchCounterElement = $('#launchCounter');
@@ -283,7 +303,7 @@ ga('send', 'pageview');
         // console.log('#sort click');
 
         var items = $('#items');
-        var modelabel = $('#modelabel');
+        var modelabel = $('#sortlabel');
 
         var isDisabled = items.sortable('instance') == null;
         if (isDisabled) {
@@ -313,6 +333,13 @@ ga('send', 'pageview');
             modelabel.removeClass('on');
             modelabel.text('OFF');
         }
+    });
+
+    document.getElementById('online').addEventListener('click', function () {
+        'use strict';
+        // console.log('#online click');
+
+        toggleOnlineMode();
     });
 
     document.getElementById('taReset').addEventListener('click', function () {
@@ -358,7 +385,7 @@ ga('send', 'pageview');
                 var today = new Date();
                 if (today.getMonth() === 3 && today.getDate() === 1) {
                     var bullet = getRandomBullet();
-                    launch(bullet);
+                    startAnimation(bullet, defaultScale);
                 }
             });
 
@@ -378,7 +405,17 @@ ga('send', 'pageview');
             var param = p.split('=');
             q[param[0]] = param.length === 2 ? param[1] : '';
         });
-        if (!isNaN(q['ta']) && 0 < q['ta'] - 0) initTAMode(q['ta'] - 0);
+        if (!isNaN(q['ta']) && 0 < q['ta'] - 0) {
+            initTAMode(q['ta'] - 0);
+            // TAモードとオンラインモードは排他
+            document.getElementById('online').style.display = 'none';
+        }
+
+        // きゃすけっと開始まで表示しない 2015/10/10 0:00
+        var today = new Date();
+        if (today.getYear() <= 2015 && today.getMonth() <= 9 && today.getDate() <= 9) {
+            document.getElementById('online').style.display = 'none';
+        }
     }
 
     function getRandomStamp () {
@@ -408,8 +445,8 @@ ga('send', 'pageview');
         } else {
             selected.removeClass('size-cover');
         }
-        document.getElementById('tweet')
-            .setAttribute('href', tweetUrl.replace('{src}', encodeURIComponent(item.src)));
+        selected.attr('src', item.src);
+        setTweetUrl();
     }
 
     function refreshArrow () {
@@ -540,6 +577,28 @@ ga('send', 'pageview');
         });
     }
 
+    function setTweetUrl () {
+        'use strict';
+        // console.log('setTweetUrl');
+
+        var tweet;
+        if (0 < taGoalCount && launchCount === taGoalCount) {
+            tweet = tweetTAUrl
+                    .replace(/_taGoalCount_/g, taGoalCount)
+                    .replace('_taTime_', taScore)
+                    .replace('_taAvgCps_', (taGoalCount / taScore).toFixed(3))
+                    .replace('_taMaxCps_', taMaxCps);
+            document.getElementById('tweet').setAttribute('href', tweet);
+        } else if (isOnlineMode) {
+            tweet = tweetOnlineUrl.replace('_onlineClickCount_', onlineClickCount);
+            document.getElementById('tweet').setAttribute('href', tweet);
+        } else {
+            var src = $('#selected').attr('src');
+            tweet = tweetUrl.replace('{src}', encodeURIComponent(src));
+            document.getElementById('tweet').setAttribute('href', tweet);
+        }
+    }
+
     function launch (bullet) {
         'use strict';
         // console.log('launch');
@@ -551,6 +610,52 @@ ga('send', 'pageview');
                 displayTAInfo();
             }, 1000);
         }
+
+        startAnimation(bullet, defaultScale);
+
+        launchCount += 1;
+        launchCounterElement.text(launchCount);
+
+        // オンラインモード処理
+        if (isOnlineMode) {
+            // 送信用タイマー設定
+            if (onlineClickCountFromSend === 0) {
+                setTimeout(function () {
+                    socket.emit('send_click_data_to_server', onlineClickCountFromSend);
+                    onlineClickCountFromSend = 0;
+                }, onlineSendClickCountInterval);
+            }
+
+            onlineClickCount += 1;
+            onlineClickCountFromSend += 1;
+
+            onlineLocalClickCount += 1;
+            localStorage.setItem('onlineLocalClickCount', onlineLocalClickCount - 0);
+
+            displayOnlineClickCount();
+
+            setTweetUrl();
+        }
+
+        // TA処理
+        if (0 < taGoalCount) {
+            if (launchCount < taGoalCount) {
+                // TA中
+                $('#taCount').text(launchCount + ' / ' + taGoalCount + ' すた');
+            } else if (launchCount === taGoalCount) {
+                // TA終了処理
+                clearInterval(taTimer);
+                displayTAInfo(true);
+                setTweetUrl();
+            } else {
+                // TA終了後
+            }
+        }
+    }
+
+    function startAnimation (bullet, scale) {
+        'use strict';
+        // console.log('startAnimation');
 
         var img = new Image();
         img.onload = function () {
@@ -573,28 +678,6 @@ ga('send', 'pageview');
             }, speed, 'linear', function () { $(this).remove(); });
         };
         img.src = bullet.image;
-
-        launchCount += 1;
-        launchCounterElement.text(launchCount);
-
-        if (0 < taGoalCount) {
-            if (launchCount < taGoalCount) {
-                // TA中
-                $('#taCount').text(launchCount + ' / ' + taGoalCount + ' すた');
-            } else if (launchCount === taGoalCount) {
-                // TA終了処理
-                clearInterval(taTimer);
-                displayTAInfo(true);
-                var tweet = tweetTAUrl
-                        .replace(/_taGoalCount_/g, taGoalCount)
-                        .replace('_taTime_', taScore)
-                        .replace('_taAvgCps_', (taGoalCount / taScore).toFixed(3))
-                        .replace('_taMaxCps_', taMaxCps);
-                $('#tweet').attr('href', tweet);
-            } else {
-                // TA終了後
-            }
-        }
     }
 
     function initTAMode (goalCount) {
@@ -649,5 +732,136 @@ ga('send', 'pageview');
         var avgCps = time === 0 ? 0 : (launchCount / time).toFixed(3);
         $('#taAvgCps').text('平均 ' + avgCps + ' すた/秒');
         $('#taMaxCps').text('最高 ' + taMaxCps + ' すた/秒');
+    }
+
+    function toggleOnlineMode () {
+        'use strict';
+        // console.log('toggleOnlineMode');
+
+        if (isOnlineMode) {
+            socket.disconnect();
+            return;
+        }
+
+        if (socket != null) {
+            socket.socket.connect();
+            return;
+        }
+
+        var script = document.createElement('script');
+        script.onload = initSocket;
+        script.setAttribute('type', 'application/javascript');
+        script.setAttribute('src', '/socket.io/socket.io.js');
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    function initSocket () {
+        'use strict';
+        // console.log('initSocket');
+
+        socket = io.connect('/', { 'reconnect': false });
+
+        // socket.io のイベントハンドラを登録
+
+        socket.on('connected', function (data) {
+            'use strict';
+            // console.log('connected');
+
+            onlineClickCount = data.clickCount;
+
+            onlineLocalClickCount = localStorage.getItem('onlineLocalClickCount') ?
+                localStorage.getItem('onlineLocalClickCount') - 0 :
+                0;
+
+            displayOnlineClickCount();
+            displayOnlineUserCount(data.userCount);
+
+            isOnlineMode = true;
+
+            var modelabel = $('#onlinelabel');
+            modelabel.addClass('on');
+            modelabel.removeClass('off');
+            modelabel.text('ON');
+
+            $('#launchCounter').css('display', 'none');
+
+            $('#onlineInfo').css('display', 'block');
+
+            setTweetUrl();
+
+            if (onlineLocalClickCount === 0) alert('タイトルをクリックしてすたちゅーをとばそう！');
+        });
+
+        socket.on('disconnect', function () {
+            'use strict';
+            // console.log('disconnect');
+
+            isOnlineMode = false;
+
+            var modelabel = $('#onlinelabel');
+            modelabel.addClass('off');
+            modelabel.removeClass('on');
+            modelabel.text('OFF');
+
+            $('#launchCounter').css('display', 'block');
+
+            $('#onlineInfo').css('display', 'none');
+
+            setTweetUrl();
+        });
+
+        socket.on('send_click_data_to_client', function (data) {
+            'use strict';
+            // console.log('send_click_data_to_client');
+
+            // まだ server に送信していないクリック数を考慮
+            var newClickCount = data.clickCount + onlineClickCountFromSend;
+
+            // 他のユーザーによるクリック数
+            var diff = newClickCount - onlineClickCount;
+
+            if (diff < 0) {
+                console.error('diff < 0');
+                diff = 0;
+            }
+            // 負荷対策
+            diff = Math.min(onlineDiffMax, diff);
+
+            onlineClickCount = newClickCount;
+            displayOnlineClickCount();
+
+            // 他のユーザーが飛ばした分だけすたちゅーを飛ばす
+            for (var i = 0; i < diff; i++) {
+                var delay = Math.floor(Math.random() * onlineSendClickCountInterval);
+                setTimeout(function () {
+                    var bullet = getRandomBullet();
+                    startAnimation(bullet, onlineScale);
+                }, delay);
+            }
+
+            setTweetUrl();
+        });
+
+        socket.on('send_user_count_to_client', function (data) {
+            'use strict';
+            // console.log('send_user_count_to_client');
+
+            displayOnlineUserCount(data.userCount);
+        });
+    }
+
+    function displayOnlineClickCount () {
+        'use strict';
+        // console.log('displayOnlineClickCount');
+
+        $('#onlineClickCount').text(onlineClickCount + ' すた');
+        $('#onlineLocalClickCount').text(onlineLocalClickCount + ' すた');
+    }
+
+    function displayOnlineUserCount (userCount) {
+        'use strict';
+        // console.log('displayOnlineUserCount');
+
+        $('#onlineUserCount').text('すたとばし勢　' + userCount + ' 人');
     }
 })();

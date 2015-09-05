@@ -13,7 +13,15 @@
     });
     mongoose.model('StampOrder', StampOrderSchema);
 
+    var ClickCountSchema = new Schema({
+        count:          { type: Number, require: true },
+        registeredTime: { type: Date,   require: true },
+        updatedTime:    { type: Date,   require: true },
+    });
+    mongoose.model('ClickCount', ClickCountSchema);
+
     mongoose.connect('mongodb://localhost/mouneyou');
 
     exports.StampOrder = mongoose.model('StampOrder');
+    exports.ClickCount = mongoose.model('ClickCount');
 })();
