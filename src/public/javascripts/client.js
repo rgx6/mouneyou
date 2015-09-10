@@ -412,8 +412,9 @@ ga('send', 'pageview');
         }
 
         // きゃすけっと開始まで表示しない 2015/10/10 0:00
+        var onlineOpen = new Date(2015, 9, 10);
         var today = new Date();
-        if (today.getYear() <= 2015 && today.getMonth() <= 9 && today.getDate() <= 9) {
+        if (today < onlineOpen) {
             document.getElementById('online').style.display = 'none';
         }
     }
