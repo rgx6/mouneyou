@@ -563,6 +563,11 @@ ga('send', 'pageview');
         'use strict';
         // console.log('getTweetCount');
 
+        var count = document.getElementById('count');
+        if (!count.childNodes[0]) count.appendChild(document.createTextNode(''));
+
+        count.childNodes[0].nodeValue = '取得中';
+
         $.ajax({
             type: 'GET',
             url: 'http://urls.api.twitter.com/1/urls/count.json?url=' + url,
@@ -570,10 +575,10 @@ ga('send', 'pageview');
             jsonpCallback: 'callback',
             cache: false,
             success: function (json) {
-                document.getElementById('count').appendChild(document.createTextNode(json.count));
+                count.childNodes[0].nodeValue = json.count;
             },
             error: function () {
-                document.getElementById('count').appendChild(document.createTextNode('検索'));
+                count.childNodes[0].nodeValue = '検索';
             }
         });
     }
