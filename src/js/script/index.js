@@ -227,18 +227,18 @@
     ];
 
     var bullets = [
-        { image: '/images/anime005.png' },
-        { image: '/images/anime007.png' },
-        { image: '/images/anime012.png' },
-        { image: '/images/anime016.png' },
-        { image: '/images/anime027.gif' },
-        { image: '/images/anime029.gif' },
-        { image: '/images/anime036.png' },
-        { image: '/images/anime037.png' },
-        { image: '/images/anime043.png' },
-        { image: '/images/anime044.png' },
-        { image: '/images/anime048.png' },
-        { image: '/images/anime051.png' }
+        { image: '/images/anime/anime005.png' },
+        { image: '/images/anime/anime007.png' },
+        { image: '/images/anime/anime012.png' },
+        { image: '/images/anime/anime016.png' },
+        { image: '/images/anime/anime027.gif' },
+        { image: '/images/anime/anime029.gif' },
+        { image: '/images/anime/anime036.png' },
+        { image: '/images/anime/anime037.png' },
+        { image: '/images/anime/anime043.png' },
+        { image: '/images/anime/anime044.png' },
+        { image: '/images/anime/anime048.png' },
+        { image: '/images/anime/anime051.png' }
     ];
 
     init();
@@ -407,7 +407,7 @@
         // console.log('setItem');
 
         var selected = $('#selected');
-        selected.css('background-image', 'url("/images/' + item.id + '.png")');
+        selected.css('background-image', 'url("/images/stamp/' + item.id + '.png")');
         if (item.isCover) {
             selected.addClass('size-cover');
             selected.removeClass('contain');
