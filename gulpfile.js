@@ -7,7 +7,14 @@ var browserSync = require('browser-sync');
 
 gulp.task('js', function () {
     // todo : clean
-    gulp.src('src/js/**/*.js')
+    gulp.src(
+        [
+            'src/js/lib/analytics.js',
+            'src/js/lib/jquery-2.1.1.min.js',
+            'src/js/lib/jquery-ui.min.js',
+            'src/js/lib/jquery.ui.touch-punch.min.js',
+            'src/js/script/*.js'
+        ])
         .pipe(concat('client.js'))
         .pipe(gulp.dest('src/public/javascripts'));
 });
@@ -21,7 +28,12 @@ gulp.task('css', function () {
 
 gulp.task('img', function () {
     // todo : clean
-    gulp.src(['src/img/**/*.*', '!src/img/sprite_src/*.*', '!src/img/stamp_original/*.*'])
+    gulp.src(
+        [
+            'src/img/**/*.*',
+            '!src/img/sprite_src/*.*',
+            '!src/img/stamp_original/*.*'
+        ])
         .pipe(gulp.dest('src/public/images'));
 });
 
