@@ -21,7 +21,7 @@ gulp.task('css', function () {
 
 gulp.task('img', function () {
     // todo : clean
-    gulp.src('src/img/**/*.*')
+    gulp.src(['src/img/**/*.*', '!src/img/sprite_src/*.*', '!src/img/stamp_original/*.*'])
         .pipe(gulp.dest('src/public/images'));
 });
 
