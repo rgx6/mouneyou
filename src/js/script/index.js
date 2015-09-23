@@ -58,170 +58,170 @@
 
     var stamps = [
         {
-            image: '/images/stamp001.png',
+            id: 'stamp001',
             src: 'http://pic.twitter.com/zJf9UxVkCy'
         }, {
-            image: '/images/stamp002.png',
+            id: 'stamp002',
             src: 'http://pic.twitter.com/gGWnG2T1N2'
         }, {
-            image: '/images/stamp003.png',
+            id: 'stamp003',
             src: 'http://pic.twitter.com/8dnYyZqEoF'
         }, {
-            image: '/images/stamp004.png',
+            id: 'stamp004',
             src: 'http://pic.twitter.com/zjx4PUhbmY'
         }, {
-            image: '/images/stamp005.png',
+            id: 'stamp005',
             src: 'http://pic.twitter.com/kHnGxG95CI'
         }, {
-            image: '/images/stamp006.png',
+            id: 'stamp006',
             src: 'http://pic.twitter.com/SbRtVCDOit'
         }, {
-            image: '/images/stamp007.png',
+            id: 'stamp007',
             src: 'http://pic.twitter.com/zIdqC5MtxE'
         }, {
-            image: '/images/stamp008.png',
+            id: 'stamp008',
             src: 'http://pic.twitter.com/yYZEcqQCGZ'
         }, {
-            image: '/images/stamp009.png',
+            id: 'stamp009',
             src: 'http://pic.twitter.com/dYwZ3axpKW'
         }, {
-            image: '/images/stamp010.png',
+            id: 'stamp010',
             src: 'http://pic.twitter.com/Z0yAX0QcHJ',
             isCover: true
         }, {
-            image: '/images/stamp011.png',
+            id: 'stamp011',
             src: 'http://pic.twitter.com/M6I6regjKd',
             isCover: true
         }, {
-            image: '/images/stamp012.png',
+            id: 'stamp012',
             src: 'http://pic.twitter.com/Iv8gvPUATM'
         }, {
-            image: '/images/stamp013.png',
+            id: 'stamp013',
             src: 'http://pic.twitter.com/sQOagjwDRJ'
         }, {
-            image: '/images/stamp014.png',
+            id: 'stamp014',
             src: 'http://pic.twitter.com/1iWz6NfP9t'
         }, {
-            image: '/images/stamp015.png',
+            id: 'stamp015',
             src: 'http://pic.twitter.com/tyXVCqpQTc'
         }, {
-            image: '/images/stamp016.png',
+            id: 'stamp016',
             src: 'http://pic.twitter.com/e1CILuyhgc'
         }, {
-            image: '/images/stamp017.png',
+            id: 'stamp017',
             src: 'http://pic.twitter.com/jmUVSC3zXK'
         }, {
-            image: '/images/stamp018.png',
+            id: 'stamp018',
             src: 'http://pic.twitter.com/2pd753IzXC'
         }, {
-            image: '/images/stamp019.png',
+            id: 'stamp019',
             src: 'http://pic.twitter.com/e1B9k2MXgS'
         }, {
-            image: '/images/stamp020.png',
+            id: 'stamp020',
             src: 'http://pic.twitter.com/wGwLC41tdH'
         }, {
-            image: '/images/stamp021.png',
+            id: 'stamp021',
             src: 'http://pic.twitter.com/SYkLTqipqL'
         }, {
-            image: '/images/stamp022.png',
+            id: 'stamp022',
             src: 'http://pic.twitter.com/wb79W80JeH'
         }, {
-            image: '/images/stamp023.png',
+            id: 'stamp023',
             src: 'http://pic.twitter.com/YYwHReTUBS',
             isCover: true
         }, {
-            image: '/images/stamp024.png',
+            id: 'stamp024',
             src: 'http://pic.twitter.com/VnmJEufqY2'
         }, {
-            image: '/images/stamp025.png',
+            id: 'stamp025',
             src: 'http://pic.twitter.com/6viZHnOBEn'
         }, {
-            image: '/images/stamp026.png',
+            id: 'stamp026',
             src: 'http://pic.twitter.com/MMDWi2jWHB'
         }, {
-            image: '/images/stamp027.png',
+            id: 'stamp027',
             src: 'http://pic.twitter.com/kDzFQfo6ty'
         }, {
-            image: '/images/stamp028.png',
+            id: 'stamp028',
             src: 'http://pic.twitter.com/cuWqlvgib3'
         }, {
-            image: '/images/stamp029.png',
+            id: 'stamp029',
             src: 'http://pic.twitter.com/RQdFyGXkcv'
         }, {
-            image: '/images/stamp030.png',
+            id: 'stamp030',
             src: 'http://pic.twitter.com/4xZ45MTCNv'
         }, {
-            image: '/images/stamp031.png',
+            id: 'stamp031',
             src: 'http://pic.twitter.com/M1zjqfk8pH'
         }, {
-            image: '/images/stamp032.png',
+            id: 'stamp032',
             src: 'http://pic.twitter.com/agDkVgLd3n'
         }, {
-            image: '/images/stamp033.png',
+            id: 'stamp033',
             src: 'http://pic.twitter.com/3wfkhxsCH1',
             isCover: true
         }, {
-            image: '/images/stamp034.png',
+            id: 'stamp034',
             src: 'http://pic.twitter.com/29RqnztSk9'
         }, {
-            image: '/images/stamp035.png',
+            id: 'stamp035',
             src: 'http://pic.twitter.com/XiMVmrDUWp'
         }, {
-            image: '/images/stamp036.png',
+            id: 'stamp036',
             src: 'http://pic.twitter.com/hXcB5g6Ygq'
         }, {
-            image: '/images/stamp037.png',
+            id: 'stamp037',
             src: 'http://pic.twitter.com/XWopb3cOts'
         }, {
-            image: '/images/stamp038.png',
+            id: 'stamp038',
             src: 'http://pic.twitter.com/E9kjtoqJRR'
         }, {
-            image: '/images/stamp039.png',
+            id: 'stamp039',
             src: 'http://pic.twitter.com/CQkpQ8Altc'
         }, {
-            image: '/images/stamp040.png',
+            id: 'stamp040',
             src: 'http://pic.twitter.com/sA362F6rix'
         }, {
-            image: '/images/stamp041.png',
+            id: 'stamp041',
             src: 'http://pic.twitter.com/Gg4ehjqB97'
         }, {
-            image: '/images/stamp042.png',
+            id: 'stamp042',
             src: 'http://pic.twitter.com/i0LrCSSpzB'
         }, {
-            image: '/images/stamp043.png',
+            id: 'stamp043',
             src: 'http://pic.twitter.com/YaskkVfYyo'
         }, {
-            image: '/images/stamp044.png',
+            id: 'stamp044',
             src: 'http://pic.twitter.com/Hg3WV1gKNj'
         }, {
-            image: '/images/stamp045.png',
+            id: 'stamp045',
             src: 'http://pic.twitter.com/e2idANGP7m'
         }, {
-            image: '/images/stamp046.png',
+            id: 'stamp046',
             src: 'http://pic.twitter.com/8ai4ePmRbt'
         }, {
-            image: '/images/stamp047.png',
+            id: 'stamp047',
             src: 'http://pic.twitter.com/b8eOJc3rdn'
         }, {
-            image: '/images/stamp048.png',
+            id: 'stamp048',
             src: 'http://pic.twitter.com/VHKZpeN8eU'
         }, {
-            image: '/images/stamp049.png',
+            id: 'stamp049',
             src: 'http://pic.twitter.com/42hJHOGPHm'
         }, {
-            image: '/images/stamp050.png',
+            id: 'stamp050',
             src: 'http://pic.twitter.com/arr2ECWUtM'
         }, {
-            image: '/images/stamp051.png',
+            id: 'stamp051',
             src: 'http://pic.twitter.com/LUKtLqZeve'
         }, {
-            image: '/images/stamp052.png',
+            id: 'stamp052',
             src: 'http://pic.twitter.com/v7l5tGeSdq'
         }, {
-            image: '/images/stamp053.png',
+            id: 'stamp053',
             src: 'http://pic.twitter.com/uWYAxKQpmF'
         }, {
-            image: '/images/stamp054.png',
+            id: 'stamp054',
             src: 'http://pic.twitter.com/a1O9gQjnx6'
         }
     ];
@@ -340,9 +340,7 @@
             }
             var div = $('<div>');
             div.attr('index', index);
-            div.css('background-image', 'url("' + stamps[index].image + '")');
-            div.addClass('sortable');
-            if (stamps[index].isCover) div.addClass('size-cover');
+            div.addClass('sortable sprite sprite-' + stamps[index].id);
             div.on('click', function () {
                 // console.log('#items div click');
 
@@ -409,10 +407,12 @@
         // console.log('setItem');
 
         var selected = $('#selected');
-        selected.css('background-image', 'url("' + item.image + '")');
+        selected.css('background-image', 'url("/images/' + item.id + '.png")');
         if (item.isCover) {
             selected.addClass('size-cover');
+            selected.removeClass('contain');
         } else {
+            selected.addClass('contain');
             selected.removeClass('size-cover');
         }
         selected.attr('src', item.src);
