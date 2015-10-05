@@ -8,11 +8,13 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title="てゆうかもう寝よう。"
     link(rel="icon", href="/images/favicon.png", type="image/png")
-    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20150923")
-    script(type="application/javascript", src="/javascripts/client.js?d=20150923", defer)
+    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20151006")
+    script(type="application/javascript", src="/javascripts/client.js?d=20151006", defer)
     script.
-      var _id = "#{id}";
+      var _id         = "#{id}";
       var _stampOrder = !{JSON.stringify(stampOrder)};
+      var _stampList  = !{JSON.stringify(stampList)};
+      var _animeList  = !{JSON.stringify(animeList)};
   body
     div.title
       a#title(unselectable="on") てゆうかもう寝よう。

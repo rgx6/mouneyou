@@ -24,6 +24,8 @@ var index = function (req, res) {
         res.render('index', {
             id:         '',
             stampOrder: [],
+            stampList:  stampList,
+            animeList:  animeList,
         });
         return;
     }
@@ -50,6 +52,8 @@ var index = function (req, res) {
         res.render('index', {
             id:         id,
             stampOrder: doc.stampOrder,
+            stampList:  stampList,
+            animeList:  animeList,
         });
         return;
     });

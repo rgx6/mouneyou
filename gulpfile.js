@@ -54,10 +54,10 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['js', 'css', 'img'], function () {
-    gulp.src('src/public/javascripts/*.js')
+    gulp.src(['src/public/javascripts/*.js', 'src/public/javascripts/*.map'])
         .pipe(gulp.dest('dest/public/javascripts'));
 
-    gulp.src('src/public/stylesheets/*.css')
+    gulp.src(['src/public/stylesheets/*.css', 'src/public/stylesheets/*.map'])
         .pipe(gulp.dest('dest/public/stylesheets'));
 
     gulp.src('src/public/images/**/*.*')
