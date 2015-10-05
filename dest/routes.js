@@ -2,9 +2,16 @@ var log4js = require('log4js');
 var logger = log4js.getLogger('appLog');
 var db     = require('./db.js');
 var uuid   = require('node-uuid');
+var stampList = require('./stamplist.json');
+var animeList = require('./animelist.json');
+
+var etagStampList = '' + Date.now();
+var etagAnimeList = '' + Date.now();
 
 exports.set = function (appRoot, app) {
     app.get(appRoot, index);
+    app.get(appRoot + 'api/stamplist', apiStampList);
+    app.get(appRoot + 'api/animelist', apiAnimeList);
     app.post(appRoot + 'beginsync', beginSync);
     app.post(appRoot + 'updateorder', updateOrder);
 };
@@ -46,6 +53,30 @@ var index = function (req, res) {
         });
         return;
     });
+};
+
+var apiStampList = function (req, res) {
+    'use strict';
+
+    res.set('ETag', etagStampList);
+
+    if (req.headers['if-none-match'] === etagStampList) {
+        res.send(304);
+    } else {
+        res.status(200).json(stampList);
+    }
+};
+
+var apiAnimeList = function (req, res) {
+    'use strict';
+
+    res.set('ETag', etagAnimeList);
+
+    if (req.headers['if-none-match'] === etagAnimeList) {
+        res.send(304);
+    } else {
+        res.status(200).json(animeList);
+    }
 };
 
 var beginSync = function (req, res) {
