@@ -195,6 +195,9 @@
             // TAモードとオンラインモードは排他
             document.getElementById('online').style.display = 'none';
         }
+        if (!isNaN(q['limit'])) {
+            onlineDiffMax = q['limit'] - 0;
+        }
 
         // きゃすけっと開始まで表示しない 2015/10/10 0:00
         var onlineOpen = new Date(2015, 9, 10);
@@ -618,7 +621,7 @@
                 diff = 0;
             }
             // 負荷対策
-            diff = Math.min(onlineDiffMax, diff);
+            diff = onlineDiffMax <= 0 ? diff : Math.min(onlineDiffMax, diff);
 
             onlineClickCount = newClickCount;
             displayOnlineClickCount();
