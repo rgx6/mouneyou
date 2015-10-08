@@ -80,7 +80,7 @@
         'use strict';
         // console.log('#sync click');
 
-        var message = '複数のブラウザで使用する方向け\n\nすたんぷのならび順を同期させるためのURLを発行します。';
+        var message = '複数のブラウザで使用する方向け\n\nすたンプのならび順を同期させるためのURLを発行します。';
         var confirm = window.confirm(message);
         if (confirm) beginSync();
     });
@@ -582,7 +582,7 @@
 
             setTweetUrl();
 
-            if (onlineLocalClickCount === 0) alert('タイトルをクリックしてすたちゅーをとばそう！');
+            if (onlineLocalClickCount === 0) alert('タイトルをクリックしてみんなですたちゅーをとばそう！');
         });
 
         socket.on('disconnect', function () {
