@@ -198,13 +198,6 @@
         if (!isNaN(q['limit'])) {
             onlineDiffMax = q['limit'] - 0;
         }
-
-        // きゃすけっと開始まで表示しない 2015/10/10 0:00
-        var onlineOpen = new Date(2015, 9, 10);
-        var today = new Date();
-        if (today < onlineOpen) {
-            document.getElementById('online').style.display = 'none';
-        }
     }
 
     function getRandomStamp () {
