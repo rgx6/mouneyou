@@ -9,6 +9,9 @@ var globalUserCount = 0;
 var totalClickCount = 0;
 var lapClickCount   = 0;
 
+var maxGlobalUserCount = 0;
+var maxLapClickCount   = 0;
+
 db.ClickCount.findOne().select('count').exec(function (err, doc) {
     if (err) {
         logger.error(err);
@@ -22,6 +25,11 @@ db.ClickCount.findOne().select('count').exec(function (err, doc) {
 
 var lapTimer = setInterval(function () {
     if (lapClickCount === 0) return;
+
+    if (maxLapClickCount < lapClickCount) {
+        maxLapClickCount = lapClickCount;
+        logger.info('update maxLapClickCount : ' + maxLapClickCount);
+    }
 
     totalClickCount += lapClickCount;
     lapClickCount = 0;
@@ -55,6 +63,11 @@ exports.onConnection = function (client) {
     logger.debug('connected : ' + client.id);
 
     globalUserCount += 1;
+
+    if (maxGlobalUserCount < globalUserCount) {
+        maxGlobalUserCount = globalUserCount;
+        logger.info('update maxGlobalUserCount : ' + maxGlobalUserCount);
+    }
 
     client.emit('connected', {
         clickCount: totalClickCount,
