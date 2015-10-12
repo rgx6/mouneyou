@@ -57,12 +57,14 @@ body {
 }
 
 .items .selected .taInfo {
+  position: relative;
   cursor: auto;
   display: none;
   width: 320px;
   height: 320px;
   background-color: #fff;
   opacity: 0.95;
+  z-index: 2;
 }
 
 .items .selected .taInfo p:first-child {
@@ -92,18 +94,20 @@ body {
 }
 
 .items .selected .onlineInfo {
+  position: relative;
   cursor: auto;
   display: none;
   width: 320px;
   height: 320px;
   background-color: #fff;
   opacity: 0.95;
+  z-index: 2;
 }
 
 .items .selected .onlineInfo p {
   position: relative;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
   line-height: 25px;
   font-size: 25px;
   color: #000;
