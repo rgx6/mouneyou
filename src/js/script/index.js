@@ -346,6 +346,8 @@
         'use strict';
         // console.log('getTweetCount');
 
+        console.log('tweetCount', _tweetCount);
+
         var count = document.getElementById('count');
         if (!count.childNodes[0]) count.appendChild(document.createTextNode(''));
 

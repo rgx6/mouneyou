@@ -14,6 +14,13 @@
             "maxLogSize": 1000000,
             "backups": 50,
             "category": ["accessLog"]
+        },
+        {
+            "type": "file",
+            "filename": "log/twitter.log",
+            "maxLogSize": 1000000,
+            "backups": 50,
+            "category": ["twitterLog"]
         }
     ],
     "replaceConsole": true

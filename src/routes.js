@@ -1,12 +1,15 @@
-var log4js = require('log4js');
-var logger = log4js.getLogger('appLog');
-var db     = require('./db.js');
-var uuid   = require('node-uuid');
+var log4js  = require('log4js');
+var Promise = require('es6-promise').Promise;
+var logger  = log4js.getLogger('appLog');
+var db      = require('./db.js');
+var uuid    = require('node-uuid');
 var stampList = require('./stamplist.json');
 var animeList = require('./animelist.json');
 
 var etagStampList = '' + Date.now();
 var etagAnimeList = '' + Date.now();
+
+var tweetCountBase = 38776;
 
 exports.set = function (appRoot, app) {
     app.get(appRoot, index);
@@ -16,46 +19,66 @@ exports.set = function (appRoot, app) {
     app.post(appRoot + 'updateorder', updateOrder);
 };
 
+function getTweetCount () {
+    'use strict';
+
+    return new Promise(function (fulfill, reject) {
+        db.Tweet.count(function (err, count) {
+            if (err) {
+                logger.error(err);
+                fulfill();
+                return;
+            }
+
+            fulfill(tweetCountBase + count);
+        });
+    });
+}
+
 var index = function (req, res) {
     'use strict';
 
-    var id = req.query.id;
-    if (isUndefinedOrNull(id)) {
-        res.render('index', {
-            id:         '',
-            stampOrder: [],
-            stampList:  stampList,
-            animeList:  animeList,
-        });
-        return;
-    }
-
-    if (id.length !== 32) {
-        res.send(404);
-        return;
-    }
-
-    var query = db.StampOrder.findOne({ id: id, isDeleted: false });
-    query.exec(function (err, doc) {
-        if (err) {
-            logger.error(err);
-            res.send(500);
+    getTweetCount().then(function (tweetCount) {
+        var id = req.query.id;
+        if (isUndefinedOrNull(id)) {
+            res.render('index', {
+                id:         '',
+                stampOrder: [],
+                stampList:  stampList,
+                animeList:  animeList,
+                tweetCount: tweetCount,
+            });
             return;
         }
 
-        if (!doc) {
-            logger.error('id not registered : ' + id);
+        if (id.length !== 32) {
             res.send(404);
             return;
         }
 
-        res.render('index', {
-            id:         id,
-            stampOrder: doc.stampOrder,
-            stampList:  stampList,
-            animeList:  animeList,
+        var query = db.StampOrder.findOne({ id: id, isDeleted: false });
+        query.exec(function (err, doc) {
+            if (err) {
+                logger.error(err);
+                res.send(500);
+                return;
+            }
+
+            if (!doc) {
+                logger.error('id not registered : ' + id);
+                res.send(404);
+                return;
+            }
+
+            res.render('index', {
+                id:         id,
+                stampOrder: doc.stampOrder,
+                stampList:  stampList,
+                animeList:  animeList,
+                tweetCount: tweetCount,
+            });
+            return;
         });
-        return;
     });
 };
 
