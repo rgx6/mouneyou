@@ -9,13 +9,12 @@ html
     title="てゆうかもう寝よう。"
     link(rel="icon", href="/images/favicon.png", type="image/png")
     link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20151106")
-    script(type="application/javascript", src="/javascripts/client.js?d=20151116", defer)
+    script(type="application/javascript", src="/javascripts/client.js?d=20151121", defer)
     script.
       var _id         = "#{id}";
       var _stampOrder = !{JSON.stringify(stampOrder)};
       var _stampList  = !{JSON.stringify(stampList)};
       var _animeList  = !{JSON.stringify(animeList)};
-      var _tweetCount = "#{tweetCount}";
   body
     div.title
       a#title(unselectable="on") てゆうかもう寝よう。
@@ -38,7 +37,7 @@ html
           p#onlineUserCount
       a#tweet.tweet.arrow(target="_blank")
         p ツイート
-      a#count.count.arrow
+      a#count.count.arrow #{tweetCount}
       div#sort.mode
         label ならべかえ
         label#sortlabel.modelabel.off OFF

@@ -177,8 +177,6 @@
             div.insertBefore(sortButton);
         }
 
-        getTweetCount();
-
         document.getElementById('count').setAttribute('href', tweetListUrl);
         refreshArrow();
 
@@ -338,32 +336,6 @@
             },
             error: function () {
                 alert('エラー');
-            }
-        });
-    }
-
-    function getTweetCount () {
-        'use strict';
-        // console.log('getTweetCount');
-
-        console.log('tweetCount', _tweetCount);
-
-        var count = document.getElementById('count');
-        if (!count.childNodes[0]) count.appendChild(document.createTextNode(''));
-
-        count.childNodes[0].nodeValue = '取得中';
-
-        $.ajax({
-            type: 'GET',
-            url: 'http://urls.api.twitter.com/1/urls/count.json?url=' + url,
-            dataType: 'jsonp',
-            jsonpCallback: 'callback',
-            cache: false,
-            success: function (json) {
-                count.childNodes[0].nodeValue = json.count;
-            },
-            error: function () {
-                count.childNodes[0].nodeValue = '検索';
             }
         });
     }
