@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="Content-Language", content="ja")
+    meta(name="robots", content="noindex, nofollow")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title="てゆうかもう寝よう。"
+    link(rel="icon", href="/images/favicon.png", type="image/png")
+    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css")
+    script var _ranking = !{JSON.stringify(ranking)};
+  body
+    div.title
+      a すたンプ ランキング
+    div.items
+      for stamp in ranking
+        div.sprite(class="sprite-" + stamp.id)
+          p.rankingCount #{stamp.count}
+    div.clearboth
+    div.footer
+      p &copy;2014
+        |  作:
+        a(href="https://twitter.com/rgx_6") @rgx_6
+        | , 絵:
+        a(href="https://twitter.com/dangoinette") @dangoinette

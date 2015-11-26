@@ -15,25 +15,50 @@ exports.set = function (appRoot, app) {
     app.get(appRoot, index);
     app.get(appRoot + 'api/stamplist', apiStampList);
     app.get(appRoot + 'api/animelist', apiAnimeList);
+    app.get(appRoot + 'ranking/stamp', rankingStamp);
     app.post(appRoot + 'beginsync', beginSync);
     app.post(appRoot + 'updateorder', updateOrder);
 };
 
-function getTweetCount () {
+var rankingStamp = function (req, res) {
     'use strict';
 
-    return new Promise(function (fulfill, reject) {
-        db.Tweet.count(function (err, count) {
-            if (err) {
-                logger.error(err);
-                fulfill();
-                return;
-            }
+    db.Tweet.find().select({ _id: 0, expandedUrls: 1 }).exec(function (err, tweets) {
+        if (err) {
+            logger.error(err);
+            res.send(500);
+            return;
+        }
 
-            fulfill(tweetCountBase + count);
+        var counts = {};
+        tweets.forEach(function (tweet) {
+            if (!counts[tweet.expandedUrls]) {
+                counts[tweet.expandedUrls] = 1;
+            } else {
+                counts[tweet.expandedUrls] += 1;
+            }
         });
+
+        var ranking = [];
+        stampList.forEach(function (stamp) {
+            var count = counts[stamp.src];
+            if (!count) count = 0;
+            ranking.push({
+                id: stamp.id,
+                count: count,
+            });
+        });
+
+        ranking.sort(function (a, b) {
+            if (a.count < b.count) return 1;
+            if (a.count > b.count) return -1;
+            return 0;
+        });
+
+        res.render('rankingStamp', { ranking: ranking });
+        return;
     });
-}
+};
 
 var index = function (req, res) {
     'use strict';
@@ -173,6 +198,22 @@ var updateOrder = function (req, res) {
         return;
     });
 };
+
+function getTweetCount () {
+    'use strict';
+
+    return new Promise(function (fulfill, reject) {
+        db.Tweet.count(function (err, count) {
+            if (err) {
+                logger.error(err);
+                fulfill();
+                return;
+            }
+
+            fulfill(tweetCountBase + count);
+        });
+    });
+}
 
 function checkOrder (order) {
     'use strict';
