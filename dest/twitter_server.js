@@ -98,6 +98,8 @@ function getTweets (max_id_str) {
             return;
         }
 
+        apiErrorCount = 0;
+
         var nextMaxId;
 
         tweets.statuses.forEach(function (tweet, index, array) {
