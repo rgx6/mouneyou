@@ -22,7 +22,7 @@
             + '%20' + encodeURIComponent('#てゆうかもう寝よう')
             + '%20' + encodeURIComponent('#すたとばしおんらいん');
 
-    var tweetListUrl = 'https://twitter.com/search?q=' + encodeURIComponent(url);
+    var tweetListUrl = 'https://twitter.com/search?q=' + encodeURIComponent(location.host);
 
     // ならべかえ保存タイミング制御用
     var updateTimer;
