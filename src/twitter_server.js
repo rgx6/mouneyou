@@ -12,7 +12,7 @@ logger.setLevel(log4js.levels.INFO);
 
 var client;
 
-var queryUrl            = 'http://mouneyou.rgx6.com/';
+var queryUrl            = 'mouneyou.rgx6.com';
 var queryCount          = 100;
 var queryDefaultSinceId = '665564226052751360';
 
@@ -36,7 +36,7 @@ setTimeout(function () {
     client = new Twitter(config);
 
     logger.debug('search start');
-    setQuerySinceId().then(getTweets);
+    getTweets();
 
     var timer = setInterval(function () {
         if (apiErrorLimit <= apiErrorCount) {
