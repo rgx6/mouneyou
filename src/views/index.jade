@@ -1,16 +1,15 @@
 doctype html
-html
+html(lang="ja")
   head
     meta(charset="utf-8")
-    meta(http-equiv="Content-Language", content="ja")
     meta(name="keywords", content="すたちゅー,スタチュー,てゆうかもう寝よう,ツイッター,Twitter,スタンプ,すたンプ")
     meta(name="description", content="不思議な生物すたちゅーのツイッター用すたンプです。")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title="てゆうかもう寝よう。"
     link(rel="canonical", href="http://mouneyou.rgx6.com/")
     link(rel="icon", href="/images/favicon.png", type="image/png")
-    link(type="text/css", rel="stylesheet", href="/stylesheets/style.css?d=20151204")
-    script(type="application/javascript", src="/javascripts/client.js?d=20151204", defer)
+    link(rel="stylesheet", href="/stylesheets/style.css?d=20151204")
+    script(src="/javascripts/client.js?d=20151204", defer)
     script.
       var _id         = "#{id}";
       var _stampOrder = !{JSON.stringify(stampOrder)};
@@ -18,7 +17,7 @@ html
       var _animeList  = !{JSON.stringify(animeList)};
   body
     div.title
-      a#title(unselectable="on") てゆうかもう寝よう。
+      a#title てゆうかもう寝よう。
     div#items.items
       div#selected.selected
         div#taInfo.taInfo

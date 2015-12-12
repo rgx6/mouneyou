@@ -1,6 +1,6 @@
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -36,7 +36,8 @@ body {
   background-size: contain;
 }
 
-.items div, .items a {
+.items div,
+.items a {
   position: relative;
   float: left;
   width: 100px;
@@ -64,7 +65,7 @@ body {
   width: 320px;
   height: 320px;
   background-color: #fff;
-  opacity: 0.95;
+  opacity: .95;
   z-index: 2;
 }
 
@@ -101,7 +102,7 @@ body {
   width: 320px;
   height: 320px;
   background-color: #fff;
-  opacity: 0.95;
+  opacity: .95;
   z-index: 2;
 }
 
@@ -117,7 +118,7 @@ body {
 .items .tweet {
   position: relative;
   background-color: #55acee;
-  background-image: url("/images/Twitter_logo_white.png");
+  background-image: url(/images/Twitter_logo_white.png);
   background-size: auto;
   background-position: center center;
 }
@@ -168,7 +169,7 @@ a.birthday {
 
 a.sta4koma {
   position: relative;
-  background-image: url("/images/sta4koma.png");
+  background-image: url(/images/sta4koma.png);
   background-size: 80%;
   background-position: center center;
 }
@@ -179,7 +180,7 @@ a.sta4koma {
 
 a.stabook {
   position: relative;
-  background-image: url("/images/stabook.png");
+  background-image: url(/images/stabook.png);
   background-position: center center;
 }
 
@@ -227,7 +228,7 @@ a.statobashi {
 
 .arrow:after {
   border: solid transparent;
-  content: " ";
+  content: ' ';
   height: 0;
   width: 0;
   position: absolute;
@@ -253,14 +254,14 @@ a.statobashi {
 .arrowcountleft:after {
   right: 100%;
   top: 50%;
-  border-right-color: #ffffff;
+  border-right-color: #fff;
   margin-top: -10px;
 }
 
 .arrowcounttop:after {
   bottom: 100%;
   left: 50%;
-  border-bottom-color: #ffffff;
+  border-bottom-color: #fff;
   margin-left: -10px;
 }
 
@@ -285,7 +286,7 @@ a.statobashi {
 }
 
 .sprite {
-    background-image: url("/images/stamp/stampspritesheet.png?d=20151204");
+    background-image: url(/images/stamp/stampspritesheet.png?d=20151204);
 }
 
 .sprite-stamp001 {
