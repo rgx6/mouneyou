@@ -184,12 +184,11 @@ a.stabook {
   background-position: center center;
 }
 
-a.statobashi {
-  position: relative;
-}
-
 .statobashi p {
   color: #000;
+  line-height: 20px;
+  top: 20px;
+  bottom: 0;
 }
 
 .reply p {
