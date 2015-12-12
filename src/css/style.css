@@ -192,6 +192,14 @@ a.statobashi {
   color: #000;
 }
 
+.reply p {
+  color: #000;
+  line-height: 20px;
+  font-size: 17px;
+  top: 30px;
+  bottom: 0;
+}
+
 .mode label {
   display: block;
   margin: 22px 0;

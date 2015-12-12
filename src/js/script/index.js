@@ -3,9 +3,10 @@
 
     var url = location.protocol + '//' + location.host + location.pathname;
 
-    var tweetUrl = 'https://twitter.com/intent/tweet'
+    var tweetUrlBase = 'https://twitter.com/intent/tweet'
             + '?lang=ja'
-            + '&text={src}' + '%20' + encodeURIComponent(url)
+            + '&text=';
+    var tweetUrlContent = '{src}' + '%20' + encodeURIComponent(url)
             + '%20' + encodeURIComponent('#てゆうかもう寝よう')
             + '%20' + encodeURIComponent('#すたンプ');
     var tweetTAUrl = 'https://twitter.com/intent/tweet'
@@ -134,6 +135,32 @@
         // console.log('#taReset click');
 
         initTAMode(taGoalCount);
+    });
+
+    document.addEventListener('copy', function (e) {
+        'use strict';
+        // console.log('document copy');
+
+        var src = $('#selected').attr('src');
+        var content =  decodeURIComponent(tweetUrlContent.replace('{src}', src));
+
+        e.preventDefault();
+        if (e.clipboardData) {
+            e.clipboardData.setData('text/plain', content);
+        } else if (window.clipboardData) {
+            window.clipboardData.setData('Text', content);
+        }
+    });
+
+    document.getElementById('reply').addEventListener('click', function () {
+        'use strict';
+        // console.log('#reply click');
+
+        var message = 'どこでもいいので画面上のテキストを選択してコピーすると'
+                    + 'リプライ用のテキストがクリップボードにコピーされます。'
+                    + '\n'
+                    + 'ブラウザによっては対応していないかもしれません。';
+        alert(message);
     });
 
     function init() {
@@ -357,7 +384,7 @@
             document.getElementById('tweet').setAttribute('href', tweet);
         } else {
             var src = $('#selected').attr('src');
-            tweet = tweetUrl.replace('{src}', encodeURIComponent(src));
+            tweet = tweetUrlBase + tweetUrlContent.replace('{src}', encodeURIComponent(src));
             document.getElementById('tweet').setAttribute('href', tweet);
         }
     }
