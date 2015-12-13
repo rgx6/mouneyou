@@ -137,30 +137,18 @@
         initTAMode(taGoalCount);
     });
 
-    document.addEventListener('copy', function (e) {
-        'use strict';
-        // console.log('document copy');
-
-        var src = $('#selected').attr('src');
-        var content =  decodeURIComponent(tweetUrlContent.replace('{src}', src));
-
-        e.preventDefault();
-        if (e.clipboardData) {
-            e.clipboardData.setData('text/plain', content);
-        } else if (window.clipboardData) {
-            window.clipboardData.setData('Text', content);
-        }
-    });
-
     document.getElementById('reply').addEventListener('click', function () {
         'use strict';
         // console.log('#reply click');
 
-        var message = 'どこでもいいので画面上のテキストを選択してコピーすると'
-                    + 'リプライ用のテキストがクリップボードにコピーされます。'
-                    + '\n'
-                    + 'ブラウザによっては対応していないかもしれません。';
-        alert(message);
+        var src = document.getElementById('selected').getAttribute('src');
+        var content =  decodeURIComponent(tweetUrlContent.replace('{src}', src));
+
+        var input = document.getElementById('replytext');
+        input.value = content;
+        input.style.display = 'block';
+        input.focus();
+        input.select();
     });
 
     function init() {

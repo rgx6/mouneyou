@@ -9,7 +9,7 @@ html(lang="ja")
     link(rel="canonical", href="http://mouneyou.rgx6.com/")
     link(rel="icon", href="/images/favicon.png", type="image/png")
     link(rel="stylesheet", href="/stylesheets/style.css?d=20151213")
-    script(src="/javascripts/client.js?d=20151213", defer)
+    script(src="/javascripts/client.js?d=20151213_2", defer)
     script.
       var _id         = "#{id}";
       var _stampOrder = !{JSON.stringify(stampOrder)};
@@ -55,9 +55,10 @@ html(lang="ja")
           br
           | for Win
       div#reply.reply
-        p りぷらい
+        p りぷらい用
           br
-          | (てすと中)
+          | てきすと
+        textarea#replytext(readonly)
     div.clearboth
     div#updated.updated ならび順を保存しました
     div.footer
