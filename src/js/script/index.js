@@ -64,13 +64,6 @@
 
     init();
 
-    window.addEventListener('resize', function () {
-        'use strict';
-        // console.log('window resize');
-
-        refreshArrow();
-    });
-
     window.addEventListener('scroll', function () {
         'use strict';
         // console.log('window scroll');
@@ -213,7 +206,6 @@
         }
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
-        refreshArrow();
 
         // 開きっぱなし対策
         setTimeout(function () { location.reload(); }, 24 * 3600 * 1000);
@@ -264,32 +256,6 @@
         }
         selected.attr('src', item.src);
         setTweetUrl();
-    }
-
-    function refreshArrow () {
-        'use strict';
-        // console.log('refreshArrow');
-
-        var width = document.body.clientWidth;
-
-        var tweetobj = $('#tweet');
-        if (width < 440) {
-            tweetobj.removeClass('arrowtweetleft');
-            tweetobj.addClass('arrowtweettop');
-        } else {
-            tweetobj.removeClass('arrowtweettop');
-            tweetobj.addClass('arrowtweetleft');
-        }
-
-        var countobj = $('#count');
-        if (width < 220 ||
-            (440 <= width && width < 550)) {
-            countobj.removeClass('arrowcountleft');
-            countobj.addClass('arrowcounttop');
-        } else {
-            countobj.removeClass('arrowcounttop');
-            countobj.addClass('arrowcountleft');
-        }
     }
 
     function loadStampOrder () {

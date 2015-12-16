@@ -283,32 +283,52 @@ a.stabook {
   border-width: 10px;
 }
 
-.arrowtweetleft:after {
-  right: 100%;
-  top: 50%;
-  border-right-color: #55acee;
-  margin-top: -10px;
+@media (max-width: 439px) {
+  .tweet:after {
+    bottom: 100%;
+    left: 50%;
+    border-bottom-color: #55acee;
+    margin-left: -10px;
+  }
+
+  .count:after {
+    right: 100%;
+    top: 50%;
+    border-right-color: #fff;
+    margin-top: -10px;
+  }
 }
 
-.arrowtweettop:after {
-  bottom: 100%;
-  left: 50%;
-  border-bottom-color: #55acee;
-  margin-left: -10px;
+@media (min-width: 440px) and (max-width: 549px) {
+  .tweet:after {
+    right: 100%;
+    top: 50%;
+    border-right-color: #55acee;
+    margin-top: -10px;
+  }
+
+  .count:after {
+    bottom: 100%;
+    left: 50%;
+    border-bottom-color: #fff;
+    margin-left: -10px;
+  }
 }
 
-.arrowcountleft:after {
-  right: 100%;
-  top: 50%;
-  border-right-color: #fff;
-  margin-top: -10px;
-}
+@media (min-width: 550px) {
+  .tweet:after {
+    right: 100%;
+    top: 50%;
+    border-right-color: #55acee;
+    margin-top: -10px;
+  }
 
-.arrowcounttop:after {
-  bottom: 100%;
-  left: 50%;
-  border-bottom-color: #fff;
-  margin-left: -10px;
+  .count:after {
+    right: 100%;
+    top: 50%;
+    border-right-color: #fff;
+    margin-top: -10px;
+  }
 }
 
 .bullet {
