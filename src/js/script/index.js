@@ -108,11 +108,9 @@
                 tolerance: 'pointer',
                 start: function (event, ui) {
                     // console.log('start');
-                    ui.item.addClass('sorting');
                 },
                 stop: function (event, ui) {
                     // console.log('stop');
-                    ui.item.removeClass('sorting');
                     saveStampOrder();
                 },
             });
@@ -187,6 +185,12 @@
             var div = $('<div>');
             div.attr('index', index);
             div.addClass('sortable sprite sprite-' + stamps[index].id);
+            div.on('mousedown', function () {
+                // console.log('#items div mousedown');
+
+                $('.selected-thumbnail').removeClass('selected-thumbnail');
+                $(this).addClass('selected-thumbnail');
+            });
             div.on('click', function () {
                 // console.log('#items div click');
 
