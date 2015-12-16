@@ -56,6 +56,8 @@
 
     var bodyElement = $('body');
     var launchCounterElement = $('#launchCounter');
+    var tweetElement = document.getElementById('tweet');
+    var scrollToTopElement = $('#scrollToTop');
 
     var stamps  = _stampList; // from script tag
     var bullets = _animeList; // from script tag
@@ -67,6 +69,17 @@
         // console.log('window resize');
 
         refreshArrow();
+    });
+
+    window.addEventListener('scroll', function () {
+        'use strict';
+        // console.log('window scroll');
+
+        if (tweetElement.getBoundingClientRect().bottom < 0) {
+            scrollToTopElement.fadeIn(500);
+        } else {
+            scrollToTopElement.fadeOut(500);
+        }
     });
 
     document.getElementById('title').addEventListener('click', function () {
@@ -149,6 +162,13 @@
         input.style.display = 'block';
         input.focus();
         input.select();
+    });
+
+    document.getElementById('scrollToTop').addEventListener('click', function () {
+        'use strict';
+        // console.log('#scrollToTop click');
+
+        window.scrollTo(0, 0);
     });
 
     function init() {
