@@ -50,6 +50,12 @@ body {
   cursor: pointer;
 }
 
+@media (min-width: 320px) and (max-width: 329px) {
+  .items :nth-child(3n+1) {
+    margin-right: 0;
+  }
+}
+
 .items .selected {
   position: relative;
   width: 320px;
