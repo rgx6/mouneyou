@@ -42,10 +42,12 @@ var rankingStamp = function (req, res) {
         var ranking = [];
         stampList.forEach(function (stamp) {
             var count = counts[stamp.src];
+            var countOld = stamp.src2 ? counts[stamp.src2] : 0;
             if (!count) count = 0;
+            if (!countOld) countOld = 0;
             ranking.push({
                 id: stamp.id,
-                count: count,
+                count: count + countOld,
             });
         });
 
