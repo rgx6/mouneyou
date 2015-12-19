@@ -9,7 +9,7 @@ var animeList = require('./animelist.json');
 var etagStampList = '' + Date.now();
 var etagAnimeList = '' + Date.now();
 
-var tweetCountBase = 38776;
+var tweetCountBase = 8494;
 
 exports.set = function (appRoot, app) {
     app.get(appRoot, index);
