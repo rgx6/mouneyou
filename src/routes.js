@@ -23,7 +23,45 @@ exports.set = function (appRoot, app) {
 var rankingStamp = function (req, res) {
     'use strict';
 
-    db.Tweet.find().select({ _id: 0, expandedUrls: 1 }).exec(function (err, tweets) {
+    var since = req.query.since;
+    var until = req.query.until;
+
+    var query = db.Tweet.find().select({
+        _id: 0,
+        expandedUrls: 1,
+    });
+
+    if (since) {
+        if (since.indexOf(':') === -1) since = since + 'T00:00:00+0900';
+        else if (since.indexOf('+') === -1) since = since + '+0900';
+
+        var sinceDate = new Date(since);
+        if (sinceDate == 'Invalid Date') {
+            res.send(400);
+            return;
+        }
+
+        query.where({ createdAt: { $gte: sinceDate - 0 }});
+    }
+
+    if (until) {
+        var toEndOfDay = false;
+        if (until.indexOf(':') === -1) {
+            until = until + 'T00:00:00+0900';
+            toEndOfDay = true;
+        } else if (until.indexOf('+') === -1) until = until + '+0900';
+
+        var untilDate = new Date(until);
+        if (untilDate == 'Invalid Date') {
+            res.send(400);
+            return;
+        }
+
+        if (toEndOfDay) untilDate = new Date(untilDate - 0 + 24 * 3600 * 1000);
+        query.where({ createdAt: { $lt: untilDate - 0 }});
+    }
+
+    query.exec(function (err, tweets) {
         if (err) {
             logger.error(err);
             res.send(500);
