@@ -7,6 +7,16 @@ body {
   background-color: #eee;
 }
 
+body.christmas-background {
+  background: repeating-linear-gradient(
+    45deg,
+    #edccbf,
+    #edccbf 10px,
+    #ccedbf 10px,
+    #ccedbf 20px
+  );
+}
+
 .title {
   margin: 20px 0;
   text-align: center;

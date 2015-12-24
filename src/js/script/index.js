@@ -166,6 +166,8 @@
         // 'use strict';
         // console.log('init');
 
+        var today = new Date();
+
         var stamp = getRandomStamp();
         setItem(stamp);
 
@@ -199,7 +201,6 @@
                 setItem(item);
 
                 // エイプリルフール
-                var today = new Date();
                 if (today.getMonth() === 3 && today.getDate() === 1) {
                     var bullet = getRandomBullet();
                     startAnimation(bullet, defaultScale);
@@ -226,6 +227,10 @@
         }
         if (!isNaN(q['limit'])) {
             onlineDiffMax = q['limit'] - 0;
+        }
+
+        if (today.getMonth() === 11 && (today.getDate() === 24 || today.getDate() === 25)) {
+            bodyElement.addClass('christmas-background');
         }
     }
 
