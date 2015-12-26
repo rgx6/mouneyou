@@ -343,9 +343,17 @@ a.stabook {
   }
 }
 
-.bullet {
+#animation-canvas-wrapper {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
   position: fixed;
-  z-index: 1;
+  top: 0;
+  width: 100%;
+}
+
+#animation-canvas {
+  pointer-events: none;
 }
 
 .clearboth {

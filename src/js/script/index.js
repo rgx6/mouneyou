@@ -37,6 +37,18 @@
     var launchCount     = 0;
     var prevLaunchCount = 0;
 
+    // アニメーション用Canvas
+    var canvasWrapper = document.getElementById('animation-canvas-wrapper');
+    var canvas = document.getElementById('animation-canvas');
+    var context = canvas.getContext('2d');
+
+    // requestAnimationFrame制御用
+    var fps = 45;
+    var isAnimating = false;
+
+    // アニメーション中のobject
+    var animations = [];
+
     // TA用
     var taTimer;
     var taStartTime = 0;
@@ -63,6 +75,13 @@
     var bullets = _animeList; // from script tag
 
     init();
+
+    window.addEventListener('resize', function () {
+        'use strict';
+        // console.log('window resize');
+
+        resizeCanvas();
+    });
 
     window.addEventListener('scroll', function () {
         'use strict';
@@ -232,6 +251,8 @@
         if (today.getMonth() === 11 && (today.getDate() === 24 || today.getDate() === 25)) {
             bodyElement.addClass('christmas-background');
         }
+
+        resizeCanvas();
     }
 
     function getRandomStamp () {
@@ -426,29 +447,60 @@
         }
     }
 
+    function render () {
+        'use strict';
+        // console.log('render');
+
+        isAnimating = true;
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        animations.forEach(function (anime) {
+            // console.log(animation);
+            context.save();
+            context.scale(anime.scale, anime.scale);
+            // scaleはサイズにだけ反映させたいので座標への影響をキャンセル
+            context.drawImage(anime.img, anime.left / anime.scale, anime.top / anime.scale);
+            context.restore();
+
+            anime.left -= anime.speed;
+        });
+
+        for (var i = animations.length - 1; 0 <= i; i--) {
+            if (animations[i].left + animations[i].img.width < 0) animations.splice(i, 1);
+        }
+
+        if (0 < animations.length) {
+            window.requestAnimationFrame(render);
+        } else {
+            isAnimating = false;
+        }
+    }
+
     function startAnimation (bullet, scale) {
         'use strict';
         // console.log('startAnimation');
 
         var img = new Image();
         img.onload = function () {
-            var width = this.width * scale;
-            var height = this.height * scale;
-            var left = document.documentElement.clientWidth;
-            var top = Math.floor(Math.random() * document.documentElement.clientHeight - height / 2);
+            var time = Math.floor(Math.random() * 2500) + 500;
+            var length = canvasWrapper.offsetWidth + this.width * scale;
+            var frame = time * fps / 1000;
+            var speedPerFrame = length / frame;
 
-            this.setAttribute('width', width);
-            this.setAttribute('height', height);
-            this.style.left = left + 'px';
-            this.style.top = top + 'px';
-            this.className = 'bullet';
+            var animation = {
+                img: this,
+                left: canvasWrapper.offsetWidth,
+                top: Math.floor(Math.random() * canvasWrapper.offsetHeight - this.height * scale / 2),
+                speed: speedPerFrame,
+                scale: scale,
+            };
 
-            bodyElement.append(this);
+            animations.push(animation);
 
-            var speed = Math.floor(Math.random() * 2500) + 500;
-            $(this).animate({
-                left: -1 * width,
-            }, speed, 'linear', function () { $(this).remove(); });
+            if (!isAnimating) {
+                render();
+            }
         };
         img.src = bullet.image;
     }
@@ -505,6 +557,14 @@
         var avgCps = time === 0 ? 0 : (launchCount / time).toFixed(3);
         $('#taAvgCps').text('平均 ' + avgCps + ' すた/秒');
         $('#taMaxCps').text('最高 ' + taMaxCps + ' すた/秒');
+    }
+
+    function resizeCanvas () {
+        'use strict';
+        // console.log('resizeCanvas');
+
+        canvas.setAttribute('width', canvasWrapper.offsetWidth);
+        canvas.setAttribute('height', canvasWrapper.offsetHeight);
     }
 
     function toggleOnlineMode () {
