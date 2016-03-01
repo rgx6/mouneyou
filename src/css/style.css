@@ -17,6 +17,18 @@ body.christmas-background {
   );
 }
 
+body.newyear-background {
+  background: repeating-linear-gradient(
+    90deg,
+    #edccbf,
+    #edccbf 10px,
+    #eee 10px,
+    #eee 20px,
+    #ccedbf 20px,
+    #ccedbf 30px
+  );
+}
+
 .title {
   margin: 20px 0;
   text-align: center;

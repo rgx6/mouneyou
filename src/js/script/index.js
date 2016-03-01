@@ -248,8 +248,12 @@
             onlineDiffMax = q['limit'] - 0;
         }
 
-        if (today.getMonth() === 11 && (today.getDate() === 24 || today.getDate() === 25)) {
+        var month = today.getMonth() + 1;
+        var date = today.getDate();
+        if (month === 12 && (date === 24 || date === 25)) {
             bodyElement.addClass('christmas-background');
+        } else if (month === 1 && (1 <= date && date <= 3)) {
+            bodyElement.addClass('newyear-background');
         }
 
         resizeCanvas();
