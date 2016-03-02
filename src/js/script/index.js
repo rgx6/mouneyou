@@ -43,7 +43,7 @@
     var context = canvas.getContext('2d');
 
     // requestAnimationFrame制御用
-    var fps = 45;
+    var fps = 60;
     var isAnimating = false;
 
     // アニメーション中のobject
