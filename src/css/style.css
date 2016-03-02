@@ -5,6 +5,7 @@
 
 body {
   background-color: #eee;
+  margin: 0 0 10px;
 }
 
 body.christmas-background {
@@ -17,16 +18,17 @@ body.christmas-background {
   );
 }
 
-body.newyear-background {
-  background: repeating-linear-gradient(
-    90deg,
-    #edccbf,
-    #edccbf 10px,
-    #eee 10px,
-    #eee 20px,
-    #ccedbf 20px,
-    #ccedbf 30px
-  );
+body.hinamatsuri-background {
+  background-color: #c0f0c0;
+  background-image:
+    linear-gradient( 30deg, #eee    12%, transparent 12.5%, transparent 87%, #eee  87.5%, #eee   ),
+    linear-gradient(150deg, #eee    12%, transparent 12.5%, transparent 87%, #eee  87.5%, #eee   ),
+    linear-gradient( 30deg, #eee    12%, transparent 12.5%, transparent 87%, #eee  87.5%, #eee   ),
+    linear-gradient(150deg, #eee    12%, transparent 12.5%, transparent 87%, #eee  87.5%, #eee   ),
+    linear-gradient( 60deg, #f0c0c0 25%, transparent 25.5%, transparent 75%, #f0c0c0 75%, #f0c0c0),
+    linear-gradient( 60deg, #f0c0c0 25%, transparent 25.5%, transparent 75%, #f0c0c0 75%, #f0c0c0);
+  background-size: 40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
 }
 
 .title {

@@ -94,6 +94,14 @@
         }
     });
 
+    // pointer-events: none; に対応していないブラウザ対策
+    document.getElementById('animation-canvas-wrapper').addEventListener('click', function () {
+        'use strict';
+        // console.log('animation-canvas-wrapper click');
+
+        this.style.display = 'none';
+    });
+
     document.getElementById('title').addEventListener('click', function () {
         'use strict';
         // console.log('#title click');
@@ -252,8 +260,8 @@
         var date = today.getDate();
         if (month === 12 && (date === 24 || date === 25)) {
             bodyElement.addClass('christmas-background');
-        } else if (month === 1 && (1 <= date && date <= 3)) {
-            bodyElement.addClass('newyear-background');
+        } else if (month === 3 && date === 3) {
+            bodyElement.addClass('hinamatsuri-background');
         }
 
         resizeCanvas();
@@ -502,7 +510,7 @@
 
             animations.push(animation);
 
-            if (!isAnimating) {
+            if (!isAnimating && window.requestAnimationFrame) {
                 render();
             }
         };
