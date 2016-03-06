@@ -468,11 +468,25 @@
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         animations.forEach(function (anime) {
-            // console.log(animation);
+            // console.log(anime);
             context.save();
             context.scale(anime.scale, anime.scale);
-            // scaleはサイズにだけ反映させたいので座標への影響をキャンセル
-            context.drawImage(anime.img, anime.left / anime.scale, anime.top / anime.scale);
+            if (anime.pattern == 1) {
+                // scaleはサイズにだけ反映させたいので座標への影響をキャンセル
+                context.drawImage(anime.img, anime.left / anime.scale, anime.top / anime.scale);
+            } else {
+                context.drawImage(
+                    anime.img,
+                    anime.width * anime.index,
+                    0,
+                    anime.width,
+                    anime.height,
+                    anime.left / anime.scale,
+                    anime.top / anime.scale,
+                    anime.width,
+                    anime.height);
+                anime.index = (anime.index + 1) % anime.pattern;
+            }
             context.restore();
 
             anime.left -= anime.speed;
@@ -495,8 +509,10 @@
 
         var img = new Image();
         img.onload = function () {
+            var pattern = bullet.pattern || 1;
+            var width = this.width / pattern;
             var time = Math.floor(Math.random() * 2500) + 500;
-            var length = canvasWrapper.offsetWidth + this.width * scale;
+            var length = canvasWrapper.offsetWidth + width * scale;
             var frame = time * fps / 1000;
             var speedPerFrame = length / frame;
 
@@ -506,6 +522,10 @@
                 top: Math.floor(Math.random() * canvasWrapper.offsetHeight - this.height * scale / 2),
                 speed: speedPerFrame,
                 scale: scale,
+                width: width,
+                height: this.height,
+                pattern: pattern,
+                index: 0,
             };
 
             animations.push(animation);
