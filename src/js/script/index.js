@@ -477,7 +477,7 @@
             } else {
                 context.drawImage(
                     anime.img,
-                    anime.width * anime.index,
+                    anime.drawOffsetLeft,
                     0,
                     anime.width,
                     anime.height,
@@ -485,7 +485,12 @@
                     anime.top / anime.scale,
                     anime.width,
                     anime.height);
-                anime.index = (anime.index + 1) % anime.pattern;
+
+                anime.frameCount = (anime.frameCount + 1) % anime.frameToChange;
+                if (anime.frameCount == 0) {
+                    anime.drawOffsetCount = (anime.drawOffsetCount + 1) % anime.pattern;
+                    anime.drawOffsetLeft = anime.width * anime.drawOffsetCount;
+                }
             }
             context.restore();
 
@@ -511,10 +516,9 @@
         img.onload = function () {
             var pattern = bullet.pattern || 1;
             var width = this.width / pattern;
-            var time = Math.floor(Math.random() * 2500) + 500;
-            var length = canvasWrapper.offsetWidth + width * scale;
-            var frame = time * fps / 1000;
-            var speedPerFrame = length / frame;
+            var timeToDelete = Math.floor(Math.random() * 2500) + 500;
+            var frameToDelete = timeToDelete * fps / 1000;
+            var speedPerFrame = (canvasWrapper.offsetWidth + width * scale) / frameToDelete;
 
             var animation = {
                 img: this,
@@ -525,7 +529,10 @@
                 width: width,
                 height: this.height,
                 pattern: pattern,
-                index: 0,
+                drawOffsetLeft: 0,
+                drawOffsetCount: 0,
+                frameCount: 0,
+                frameToChange: Math.floor(Math.random() * 10 + 1),
             };
 
             animations.push(animation);
