@@ -64,7 +64,7 @@
     var onlineClickCount             = 0;
     var onlineClickCountFromSend     = 0;
     var onlineLocalClickCount        = 0;
-    var onlineDiffMax                = 100;
+    var onlineAnimationsLimit        = 100;
 
     var bodyElement = $('body');
     var launchCounterElement = $('#launchCounter');
@@ -253,7 +253,7 @@
             document.getElementById('online').style.display = 'none';
         }
         if (!isNaN(q['limit'])) {
-            onlineDiffMax = q['limit'] - 0;
+            onlineAnimationsLimit = q['limit'] - 0;
         }
 
         var month = today.getMonth() + 1;
@@ -696,13 +696,12 @@
                 console.error('diff < 0');
                 diff = 0;
             }
-            // 負荷対策
-            diff = onlineDiffMax <= 0 ? diff : Math.min(onlineDiffMax, diff);
 
             onlineClickCount = newClickCount;
             displayOnlineClickCount();
 
-            // 他のユーザーが飛ばした分だけすたちゅーを飛ばす
+            // 他のユーザーが飛ばした分だけすたちゅーを飛ばす（負荷対策で上限あり）
+            if (0 <= onlineAnimationsLimit) diff = Math.min(diff, onlineAnimationsLimit - animations.length);
             for (var i = 0; i < diff; i++) {
                 var delay = Math.floor(Math.random() * onlineSendClickCountInterval);
                 setTimeout(function () {
