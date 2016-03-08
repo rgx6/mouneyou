@@ -255,6 +255,17 @@
         if (!isNaN(q['limit'])) {
             onlineAnimationsLimit = q['limit'] - 0;
         }
+        if (!isNaN(q['test'])) {
+            setInterval(function () {
+                console.log(animations.length);
+                var num = q['test'] - 0;
+                if (0 <= onlineAnimationsLimit) num = Math.min(num, onlineAnimationsLimit - animations.length);
+                for (var i = 0; i < num; i++) {
+                    var bullet = getRandomBullet();
+                    startAnimation(bullet, onlineScale);
+                }
+            }, 1000);
+        }
 
         var month = today.getMonth() + 1;
         var date = today.getDate();
