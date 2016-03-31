@@ -229,7 +229,7 @@
 
                 // エイプリルフール
                 if (today.getMonth() === 3 && today.getDate() === 1) {
-                    var bullet = getRandomBullet();
+                    var bullet = { "image": "/images/anime/anime999.png", "pattern": 3 };
                     startAnimation(bullet, defaultScale);
                 }
             });
@@ -273,6 +273,8 @@
             bodyElement.addClass('christmas-background');
         } else if (month === 3 && date === 3) {
             bodyElement.addClass('hinamatsuri-background');
+        } else if (month === 4 && date === 1) {
+            bodyElement.addClass('aprilfool-background');
         }
 
         resizeCanvas();
