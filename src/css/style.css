@@ -35,6 +35,10 @@ body.aprilfool-background {
   background-color: #fdd9d9;
 }
 
+body.goldenweek-background {
+  background: linear-gradient(#eeda00, #ffd700);
+}
+
 .title {
   margin: 20px 0;
   text-align: center;
@@ -218,6 +222,15 @@ a.stabook {
   position: relative;
   background-image: url(/images/stabook.png);
   background-position: center center;
+}
+
+a.statshirt {
+  position: relative;
+  background-image: url(/images/statshirt.png);
+}
+
+.statshirt p {
+  color: #000;
 }
 
 .statobashi p {

@@ -194,6 +194,8 @@
         // console.log('init');
 
         var today = new Date();
+        var todayYMD = formatDate(today, 'YYYYMMDD');
+        var todayMD = formatDate(today, 'MMDD');
 
         var stamp = getRandomStamp();
         setItem(stamp);
@@ -228,7 +230,7 @@
                 setItem(item);
 
                 // エイプリルフール
-                if (today.getMonth() === 3 && today.getDate() === 1) {
+                if (todayMD === '0401') {
                     var bullet = { "image": "/images/anime/anime999.png", "pattern": 3 };
                     startAnimation(bullet, defaultScale);
                 }
@@ -267,14 +269,16 @@
             }, 1000);
         }
 
-        var month = today.getMonth() + 1;
-        var date = today.getDate();
-        if (month === 12 && (date === 24 || date === 25)) {
+        if (todayMD === '1224' || todayMD === '1225') {
             bodyElement.addClass('christmas-background');
-        } else if (month === 3 && date === 3) {
+        } else if (todayMD === '0303') {
             bodyElement.addClass('hinamatsuri-background');
-        } else if (month === 4 && date === 1) {
+        } else if (todayMD === '0401') {
             bodyElement.addClass('aprilfool-background');
+        } else if (('20160429' <= todayYMD && todayYMD <= '20160501') ||
+                   ('20160503' <= todayYMD && todayYMD <= '20160505') ||
+                   ('20160507' <= todayYMD && todayYMD <= '20160509')) {
+            bodyElement.addClass('goldenweek-background');
         }
 
         resizeCanvas();
@@ -748,4 +752,12 @@
 
         $('#onlineUserCount').text('すたとばし勢　' + userCount + ' 人');
     }
+
+    function formatDate (date, format) {
+        if (!format) format = 'YYYYMMDD';
+        format = format.replace(/YYYY/g, date.getFullYear());
+        format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+        format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
+        return format;
+    };
 })();
