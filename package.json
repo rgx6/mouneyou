@@ -6,6 +6,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "es6-promise": "^3.0.2",
     "express": "~3.4.7",
     "log4js": "~0.6.21",
     "mongoose": "~3.8.20",

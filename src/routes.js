@@ -1,3 +1,4 @@
+var Promise = require('es6-promise').Promise;
 var log4js  = require('log4js');
 var logger  = log4js.getLogger('appLog');
 var db      = require('./db.js');
