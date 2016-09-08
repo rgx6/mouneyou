@@ -224,6 +224,12 @@ a.stabook {
   background-position: center center;
 }
 
+a.hobo_stabook {
+  position: relative;
+  background-image: url(/images/hobo_stabook.png);
+  background-position: center center;
+}
+
 a.statshirt {
   position: relative;
   background-image: url(/images/statshirt.png);
