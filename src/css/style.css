@@ -230,6 +230,21 @@ a.hobo_stabook {
   background-position: center center;
 }
 
+a.furoshiki {
+  background-image: url(/images/furoshiki.png);
+  background-position: center center;
+  position: relative;
+}
+
+a.furoshiki p {
+  color: #fff;
+  font-weight: bold;
+  text-shadow:  2px  2px 2px #004D00,
+               -2px  2px 2px #004D00,
+               -2px -2px 2px #004D00,
+                2px -2px 2px #004D00;
+}
+
 a.statshirt {
   position: relative;
   background-image: url(/images/statshirt.png);
