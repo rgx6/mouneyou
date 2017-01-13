@@ -245,6 +245,23 @@ a.furoshiki p {
                 2px -2px 2px #004D00;
 }
 
+a.linestamp {
+  background-color: #00c300;
+  background-image: url(/images/linestamp.png);
+  background-position: center center;
+  position: relative;
+}
+
+a.linestamp p {
+  color: #000;
+  font-size: 90%;
+  font-weight: bold;
+  text-shadow:  1px  1px 1px #00c300,
+               -1px  1px 1px #00c300,
+               -1px -1px 1px #00c300,
+                1px -1px 1px #00c300;
+}
+
 a.statshirt {
   position: relative;
   background-image: url(/images/statshirt.png);
