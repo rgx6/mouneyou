@@ -275,9 +275,7 @@
             bodyElement.addClass('hinamatsuri-background');
         } else if (todayMD === '0401') {
             bodyElement.addClass('aprilfool-background');
-        } else if (('20160429' <= todayYMD && todayYMD <= '20160501') ||
-                   ('20160503' <= todayYMD && todayYMD <= '20160505') ||
-                   ('20160507' <= todayYMD && todayYMD <= '20160509')) {
+        } else if ('20170503' <= todayYMD && todayYMD <= '20170507') {
             bodyElement.addClass('goldenweek-background');
         }
 
