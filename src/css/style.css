@@ -441,7 +441,7 @@ a.statshirt {
 }
 
 .sprite {
-    background-image: url(/images/stamp/stampspritesheet.png?d=20180624);
+    background-image: url(/images/stamp/stampspritesheet.png?d=20180624_2);
 }
 
 .sprite-stamp001 {
@@ -742,4 +742,16 @@ a.statshirt {
 
 .sprite-stamp075 {
     background-position: -200px -800px;
+}
+
+.sprite-stamp076 {
+    background-position: -300px -800px;
+}
+
+.sprite-stamp077 {
+    background-position: -400px -800px;
+}
+
+.sprite-stamp078 {
+    background-position: -500px -800px;
 }
