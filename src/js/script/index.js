@@ -180,6 +180,15 @@
         input.style.display = 'block';
         input.focus();
         input.select();
+        try {
+            document.execCommand('copy');
+            $('#copied').fadeIn(500, function () {
+                setTimeout(function () {
+                    $('#copied').fadeOut(500);
+                }, 1000);
+            });
+        } catch (e) {
+        }
     });
 
     document.getElementById('scrollToTop').addEventListener('click', function () {

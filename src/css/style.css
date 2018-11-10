@@ -326,7 +326,7 @@ a.statshirt {
   font-size: 17px;
 }
 
-.updated {
+.popupMessage {
   display: none;
   position: fixed;
   top: 20px;
