@@ -1,3 +1,15 @@
+/*!
+  "瀬戸フォント" licensed under the SIL Open Font License 1.1
+  http://nonty.net/
+*/
+@font-face {
+  font-family: "setofont";
+  font-style: "normal";
+  font-weight: 400;
+  src: url("/fonts/setofont_subset.woff2") format("woff2"),
+       url("/fonts/setofont_subset.woff") format("woff");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +17,7 @@
 
 body {
   background-color: #eee;
+  font-family: 'setofont';
   margin: 0 0 10px;
 }
 

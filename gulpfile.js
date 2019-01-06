@@ -44,6 +44,15 @@ gulp.task('img', function () {
         .pipe(gulp.dest('src/public/images'));
 });
 
+gulp.task('font', function () {
+    // todo : clean
+    gulp.src(
+        [
+            'src/font/**/*.*'
+        ])
+        .pipe(gulp.dest('src/public/fonts'));
+});
+
 gulp.task('release', function () {
     // todo : clean build
     console.log('not implemented');
@@ -53,7 +62,7 @@ gulp.task('clean', function () {
     del('dest/**/*');
 });
 
-gulp.task('build', ['js', 'css', 'img'], function () {
+gulp.task('build', ['js', 'css', 'img', 'font'], function () {
     gulp.src(['src/public/javascripts/*.js', 'src/public/javascripts/*.map'])
         .pipe(gulp.dest('dest/public/javascripts'));
 
@@ -62,6 +71,9 @@ gulp.task('build', ['js', 'css', 'img'], function () {
 
     gulp.src('src/public/images/**/*.*')
         .pipe(gulp.dest('dest/public/images'));
+
+    gulp.src('src/public/fonts/**/*.*')
+        .pipe(gulp.dest('dest/public/fonts'));
 
     gulp.src('src/views/**/*.pug')
         .pipe(gulp.dest('dest/views'));
@@ -81,6 +93,7 @@ gulp.task('watch', function () {
     gulp.watch('src/js/**/*.js', ['js', browserSync.reload]);
     gulp.watch('src/css/**/*.css', ['css', browserSync.reload]);
     gulp.watch('src/img/**/*.*', ['img', browserSync.reload]);
+    gulp.watch('src/font/**/*.*', ['font', browserSync.reload]);
     gulp.watch('src/views/*.pug', browserSync.reload);
 });
 

@@ -23,7 +23,7 @@ app.use(log4js.connectLogger(accessLogger, {
     // express 閾値ではなく指定したログレベルで記録される
     'level': log4js.levels.INFO,
     // アクセスログを出力する際に無視する拡張子
-    'nolog': [ '\\.css', '\\.js', '\\.png', '\\.gif' ],
+    'nolog': [ '\\.css', '\\.js', '\\.png', '\\.gif', '\\.woff', '\\.woff2' ],
     // アクセスログのフォーマット
     'format': JSON.stringify({
         'remote-addr':    ':remote-addr',
