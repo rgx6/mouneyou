@@ -202,6 +202,10 @@ body.goldenweek-background {
   font-size: 20px;
 }
 
+.items .count.over100000 {
+  color: white;
+}
+
 .items .selected-thumbnail {
   background-clip: content-box;
   background-origin: border-box;

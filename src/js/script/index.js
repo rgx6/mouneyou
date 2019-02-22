@@ -282,10 +282,21 @@
             bodyElement.addClass('christmas-background');
         } else if (todayMD === '0303') {
             bodyElement.addClass('hinamatsuri-background');
+        } else if (todayMD === '0310') {
+            // すたちゅー誕生日
         } else if (todayMD === '0401') {
             bodyElement.addClass('aprilfool-background');
-        } else if ('20170503' <= todayYMD && todayYMD <= '20170507') {
+        } else if ('20190427' <= todayYMD && todayYMD <= '20190506') {
             bodyElement.addClass('goldenweek-background');
+        }
+
+        // TODO: 100000ツイート対応 あとで消す
+        var tweetCount = document.getElementById('count').innerText - 0;
+        if(100000 <= tweetCount && tweetCount < 100100) {
+            var e = $('#count');
+            setInterval(function () {
+                e.toggleClass('over100000');
+            }, 500);
         }
 
         resizeCanvas();
