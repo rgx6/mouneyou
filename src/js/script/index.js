@@ -240,7 +240,12 @@
 
                 // エイプリルフール
                 if (todayMD === '0401') {
-                    var bullet = { "image": "/images/anime/anime999.png", "pattern": 3 };
+                    var bullet = {
+                        "image": Math.floor(Math.random() * 2) == 0
+                            ? "/images/anime/anime998.png"
+                            : "/images/anime/anime999.png",
+                        "pattern": 3,
+                    };
                     startAnimation(bullet, defaultScale);
                 }
             });
