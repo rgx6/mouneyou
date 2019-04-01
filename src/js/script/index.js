@@ -255,9 +255,6 @@
 
         document.getElementById('count').setAttribute('href', tweetListUrl);
 
-        // 開きっぱなし対策
-        setTimeout(function () { location.reload(); }, 24 * 3600 * 1000);
-
         var q = {};
         location.search.substr(1).split('&').forEach(function (p) {
             var param = p.split('=');
