@@ -416,5 +416,21 @@
         "id":    "stamp089",
         "image": "/images/stamp/stamp089.png",
         "src":   "https://twitter.com/moune_you/status/1122102975508312064/photo/1"
+    }, {
+        "id":    "stamp090",
+        "image": "/images/stamp/stamp090.png",
+        "src":   "https://twitter.com/moune_you/status/1133744757169983489/photo/1"
+    }, {
+        "id":    "stamp091",
+        "image": "/images/stamp/stamp091.png",
+        "src":   "https://twitter.com/moune_you/status/1133745034048655360/photo/1"
+    }, {
+        "id":    "stamp092",
+        "image": "/images/stamp/stamp092.png",
+        "src":   "https://twitter.com/moune_you/status/1133745119427870720/photo/1"
+    }, {
+        "id":    "stamp093",
+        "image": "/images/stamp/stamp093.png",
+        "src":   "https://twitter.com/moune_you/status/1133745178047463424/photo/1"
     }
 ]
