@@ -290,6 +290,9 @@
             bodyElement.addClass('aprilfool-background');
         } else if ('20190427' <= todayYMD && todayYMD <= '20190506') {
             bodyElement.addClass('goldenweek-background');
+        } else {
+            var number = Math.floor(Math.random() * 12);
+            bodyElement.addClass('background-' + number);
         }
 
         // TODO: 100000ツイート対応 あとで消す

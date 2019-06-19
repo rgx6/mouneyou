@@ -52,6 +52,54 @@ body.goldenweek-background {
   background: linear-gradient(75deg, #410E01, #D7AD37, #FBD25C, #FAE56B);
 }
 
+body.background-0 {
+  background-color: #eee;
+}
+
+body.background-1 {
+  background-color: #ecd5ca;
+}
+
+body.background-2 {
+  background-color: #fcd6de;
+}
+
+body.background-3 {
+  background-color: #a47a62;
+}
+
+body.background-4 {
+  background-color: #eae4e6;
+}
+
+body.background-5 {
+  background-color: #dfead6;
+}
+
+body.background-6 {
+  background-color: #edd6df;
+}
+
+body.background-7 {
+  background-color: #ffdfa3;
+}
+
+body.background-8 {
+  background-color: #f3f3f3;
+}
+
+body.background-9 {
+  background-color: #f0f6f9;
+}
+
+body.background-10 {
+  background-color: #e1aa77;
+}
+
+body.background-11 {
+  background-color: #7392b1;
+}
+
 .title {
   margin: 20px 0;
   text-align: center;
