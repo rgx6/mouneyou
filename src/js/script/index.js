@@ -295,15 +295,6 @@
             bodyElement.addClass('background-' + number);
         }
 
-        // TODO: 100000ツイート対応 あとで消す
-        var tweetCount = document.getElementById('count').innerText - 0;
-        if(100000 <= tweetCount && tweetCount < 100100) {
-            var e = $('#count');
-            setInterval(function () {
-                e.toggleClass('over100000');
-            }, 500);
-        }
-
         resizeCanvas();
     }
 
