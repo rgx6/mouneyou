@@ -37,7 +37,7 @@ var rankingStamp = function (req, res) {
 
         var sinceDate = new Date(since);
         if (sinceDate == 'Invalid Date') {
-            res.send(400);
+            res.sendStatus(400);
             return;
         }
 
@@ -53,7 +53,7 @@ var rankingStamp = function (req, res) {
 
         var untilDate = new Date(until);
         if (untilDate == 'Invalid Date') {
-            res.send(400);
+            res.sendStatus(400);
             return;
         }
 
@@ -64,7 +64,7 @@ var rankingStamp = function (req, res) {
     query.exec(function (err, tweets) {
         if (err) {
             logger.error(err);
-            res.send(500);
+            res.sendStatus(500);
             return;
         }
 
@@ -117,7 +117,7 @@ var index = function (req, res) {
         }
 
         if (id.length !== 32) {
-            res.send(404);
+            res.sendStatus(404);
             return;
         }
 
@@ -125,13 +125,13 @@ var index = function (req, res) {
         query.exec(function (err, doc) {
             if (err) {
                 logger.error(err);
-                res.send(500);
+                res.sendStatus(500);
                 return;
             }
 
             if (!doc) {
                 logger.error('id not registered : ' + id);
-                res.send(404);
+                res.sendStatus(404);
                 return;
             }
 
@@ -153,7 +153,7 @@ var apiStampList = function (req, res) {
     res.set('ETag', etagStampList);
 
     if (req.headers['if-none-match'] === etagStampList) {
-        res.send(304);
+        res.sendStatus(304);
     } else {
         res.status(200).json(stampList);
     }
@@ -165,7 +165,7 @@ var apiAnimeList = function (req, res) {
     res.set('ETag', etagAnimeList);
 
     if (req.headers['if-none-match'] === etagAnimeList) {
-        res.send(304);
+        res.sendStatus(304);
     } else {
         res.status(200).json(animeList);
     }
@@ -176,7 +176,7 @@ var beginSync = function (req, res) {
 
     var order = req.body.stampOrder;
     if (!checkOrder(order)) {
-        res.send(400);
+        res.sendStatus(400);
         return;
     }
 
@@ -190,7 +190,7 @@ var beginSync = function (req, res) {
     stampOrder.save(function (err, doc) {
         if (err) {
             logger.error(err);
-            res.send(500);
+            res.sendStatus(500);
             return;
         }
 
@@ -204,13 +204,13 @@ var updateOrder = function (req, res) {
 
     var id = req.body.id;
     if (!checkId(id)) {
-        res.send(400);
+        res.sendStatus(400);
         return;
     }
 
     var order = req.body.stampOrder;
     if (!checkOrder(order)) {
-        res.send(400);
+        res.sendStatus(400);
         return;
     }
 
@@ -224,13 +224,13 @@ var updateOrder = function (req, res) {
     }, function (err, data) {
         if (err) {
             logger.error(err);
-            res.send(500);
+            res.sendStatus(500);
             return;
         }
 
         if (data === null) {
             logger.error('not registered id : ' + id);
-            res.send(500);
+            res.sendStatus(500);
             return;
         }
 
