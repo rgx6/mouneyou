@@ -377,6 +377,14 @@ a.statshirt {
   font-size: 17px;
 }
 
+.mode2 label:nth-child(1) {
+  margin: 22px 0 0;
+}
+
+.mode2 label:nth-child(2) {
+  margin: 5px 0 0;
+}
+
 .modelabel.on {
   color: #ee55ac;
 }

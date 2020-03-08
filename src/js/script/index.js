@@ -66,6 +66,9 @@
     var onlineLocalClickCount        = 0;
     var onlineAnimationsLimit        = 100;
 
+    // リプライモード用
+    var isReplyMode = false;
+
     var bodyElement = $('body');
     var launchCounterElement = $('#launchCounter');
     var tweetElement = document.getElementById('tweet');
@@ -172,23 +175,7 @@
         'use strict';
         // console.log('#reply click');
 
-        var src = document.getElementById('selected').getAttribute('src');
-        var content =  decodeURIComponent(tweetUrlContent.replace('{src}', src));
-
-        var input = document.getElementById('replytext');
-        input.value = content;
-        input.style.display = 'block';
-        input.focus();
-        input.select();
-        try {
-            document.execCommand('copy');
-            $('#copied').fadeIn(500, function () {
-                setTimeout(function () {
-                    $('#copied').fadeOut(500);
-                }, 1000);
-            });
-        } catch (e) {
-        }
+        copyReplyText();
     });
 
     document.getElementById('scrollToTop').addEventListener('click', function () {
@@ -196,6 +183,13 @@
         // console.log('#scrollToTop click');
 
         window.scrollTo(0, 0);
+    });
+
+    document.getElementById('reply-mode').addEventListener('click', function () {
+        'use strict';
+        // console.log('#reply-mode click');
+
+        toggleReplyMode();
     });
 
     function init() {
@@ -212,6 +206,12 @@
         var sortButton = $('#sort');
 
         if (0 < _id.length) document.getElementById('sync').style.display = 'none';
+
+        if (JSON.parse(localStorage.getItem('isReplyMode'))) {
+            replyModeOn();
+        } else {
+            replyModeOff();
+        }
 
         var stampOrder = loadStampOrder();
 
@@ -237,6 +237,10 @@
                 var index = $(this).attr('index');
                 var item = stamps[index];
                 setItem(item);
+
+                if (isReplyMode) {
+                    copyReplyText();
+                }
 
                 // エイプリルフール
                 if (todayMD === '0401') {
@@ -765,6 +769,63 @@
         // console.log('displayOnlineUserCount');
 
         $('#onlineUserCount').text('すたとばし勢　' + userCount + ' 人');
+    }
+
+    function copyReplyText () {
+        'use strict';
+        // console.log('copyReplyText');
+
+        var src = document.getElementById('selected').getAttribute('src');
+        var content =  decodeURIComponent(tweetUrlContent.replace('{src}', src));
+
+        var input = document.getElementById('replytext');
+        input.value = content;
+        input.style.display = 'block';
+        input.select();
+        try {
+            document.execCommand('copy');
+            $('#copied').fadeIn(500, function () {
+                setTimeout(function () {
+                    $('#copied').fadeOut(500);
+                }, 1000);
+            });
+        } catch (e) {
+        }
+    }
+
+    function toggleReplyMode () {
+        'use strict';
+        // console.log('toggleReplyMode');
+
+        if (isReplyMode) {
+            replyModeOff();
+        } else {
+            replyModeOn();
+        }
+    }
+
+    function replyModeOn () {
+        'use strict';
+        // console.log('replyModeOn');
+
+        var modelabel = $('#reply-mode-label');
+        modelabel.addClass('on');
+        modelabel.removeClass('off');
+        modelabel.text('ON');
+        isReplyMode = true;
+        localStorage.setItem('isReplyMode', JSON.stringify(true));
+    }
+
+    function replyModeOff () {
+        'use strict';
+        // console.log('replyModeOff');
+
+        var modelabel = $('#reply-mode-label');
+        modelabel.addClass('off');
+        modelabel.removeClass('on');
+        modelabel.text('OFF');
+        isReplyMode = false;
+        localStorage.setItem('isReplyMode', JSON.stringify(false));
     }
 
     function formatDate (date, format) {
