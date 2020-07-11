@@ -1,7 +1,6 @@
 var express      = require('express');
 var http         = require('http');
 var compression  = require('compression');
-var bodyParser   = require('body-parser');
 var errorHandler = require('errorhandler');
 var path         = require('path');
 var log4js       = require('log4js');
@@ -21,7 +20,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.enable('trust proxy');
 app.use(compression());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(log4js.connectLogger(accessLogger, {
     // express 閾値ではなく指定したログレベルで記録される
     'level': log4js.levels.INFO,
