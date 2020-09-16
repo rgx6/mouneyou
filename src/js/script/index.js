@@ -331,7 +331,7 @@
             selected.addClass('contain');
             selected.removeClass('size-cover');
         }
-        selected.attr('src', item.src);
+        selected.attr('src', item.src[0]);
         setTweetUrl();
     }
 
