@@ -143,6 +143,10 @@ body.background-11 {
   cursor: pointer;
 }
 
+.items [searchTag] {
+  color: rgba(0, 0, 0, 0);
+}
+
 @media (min-width: 320px) and (max-width: 329px) {
   .items :nth-child(3n+1) {
     margin-right: 0;
@@ -252,6 +256,13 @@ body.background-11 {
 
 .items .count.over100000 {
   color: white;
+}
+
+.items .search-hit-thumbnail {
+  background-clip: content-box;
+  background-origin: border-box;
+  border: solid 3px #ff0000;
+  box-sizing: border-box;
 }
 
 .items .selected-thumbnail {
@@ -398,6 +409,11 @@ a.statshirt {
   text-align: center;
   line-height: 100px;
   font-size: 17px;
+}
+
+.search label {
+  color: #000;
+  line-height: 100px;
 }
 
 .popupMessage {

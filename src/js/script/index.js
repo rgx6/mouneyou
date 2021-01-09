@@ -178,6 +178,13 @@
         copyReplyText();
     });
 
+    document.getElementById('search').addEventListener('click', function () {
+        'use strict';
+        // console.log('#search click');
+
+        searchStamp();
+    });
+
     document.getElementById('scrollToTop').addEventListener('click', function () {
         'use strict';
         // console.log('#scrollToTop click');
@@ -225,6 +232,9 @@
             var div = $('<div>');
             div.attr('index', index);
             div.addClass('sortable sprite sprite-' + stamps[index].id);
+            var searchTag = stamps[index].searchTag || '';
+            div.attr('searchTag', searchTag);
+            div.text(searchTag);
             div.on('mousedown', function () {
                 // console.log('#items div mousedown');
 
@@ -300,6 +310,33 @@
         }
 
         resizeCanvas();
+    }
+
+    function searchStamp () {
+        'use strict';
+        // console.log('searchStamp');
+
+        var searchWord = window.prompt('すたンプ検索');
+        searchWord = searchWord ? searchWord.replace(/\s/g, '') : '';
+
+        var firstHit = null;
+
+        $('.items div[searchTag]').each(function (item) {
+            $(this).removeClass('search-hit-thumbnail');
+
+            if (searchWord == '') return;
+
+            if ($(this).attr('searchTag').includes(searchWord)) {
+                $(this).addClass('search-hit-thumbnail');
+                if (!firstHit) {
+                    firstHit = this;
+                }
+            }
+        });
+
+        if (firstHit) {
+            window.scrollTo(0, $(firstHit).offset().top);
+        }
     }
 
     function getRandomStamp () {
