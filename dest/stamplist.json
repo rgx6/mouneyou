@@ -1036,5 +1036,37 @@
             "https://twitter.com/moune_you/status/1330850651664912385/photo/1"
         ],
         "searchTag": "きゃとるみゅーてぃれーしょん 文字なし"
+    },
+    {
+        "id": "stamp110",
+        "image": "/images/stamp/stamp110.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1387963048955047936/photo/1"
+        ],
+        "searchTag": "おそとでくらしたい"
+    },
+    {
+        "id": "stamp111",
+        "image": "/images/stamp/stamp111.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1387963051656159232/photo/1"
+        ],
+        "searchTag": "こむぎこ 非すたちゅー 飲食"
+    },
+    {
+        "id": "stamp112",
+        "image": "/images/stamp/stamp112.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1387963054294376449/photo/1"
+        ],
+        "searchTag": "bird strike ばーどすとらいく"
+    },
+    {
+        "id": "stamp113",
+        "image": "/images/stamp/stamp113.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1387963057213558787/photo/1"
+        ],
+        "searchTag": "まってる"
     }
 ]
