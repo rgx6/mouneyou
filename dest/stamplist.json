@@ -1068,5 +1068,37 @@
             "https://twitter.com/moune_you/status/1387963057213558787/photo/1"
         ],
         "searchTag": "まってる"
+    },
+    {
+        "id": "stamp114",
+        "image": "/images/stamp/stamp114.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1427286842034950145/photo/1"
+        ],
+        "searchTag": "いきたくない"
+    },
+    {
+        "id": "stamp115",
+        "image": "/images/stamp/stamp115.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1427287029096665089/photo/1"
+        ],
+        "searchTag": "しゅうごう"
+    },
+    {
+        "id": "stamp116",
+        "image": "/images/stamp/stamp116.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1427287133522333702/photo/1"
+        ],
+        "searchTag": "かいさん"
+    },
+    {
+        "id": "stamp117",
+        "image": "/images/stamp/stamp117.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1427287331459919880/photo/1"
+        ],
+        "searchTag": "やすみ"
     }
 ]
