@@ -39,7 +39,8 @@ gulp.task('img', function () {
         [
             'src/img/**/*.*',
             '!src/img/sprite_src/*.*',
-            '!src/img/stamp_original/*.*'
+            '!src/img/stamp_original/*.*',
+            '!src/img/stamp_twitter_optimized/*.*',
         ])
         .pipe(gulp.dest('src/public/images'));
 });
