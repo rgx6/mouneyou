@@ -63,7 +63,7 @@ server.listen(app.get('port'), function () {
 });
 
 // 'log lever' : 0 error  1 warn  2 info  3 debug / log: false
-var io = require('socket.io').listen(server, { 'log level': 2 });
+var io = require('socket.io')(server, { 'log level': 2 });
 exports.sockets = io.sockets.on('connection', socketapp.onConnection);
 
 process.on('uncaughtException', function (err) {

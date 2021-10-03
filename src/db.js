@@ -30,7 +30,11 @@
     });
     mongoose.model('Tweet', TweetSchema);
 
-    mongoose.connect('mongodb://localhost/mouneyou');
+    mongoose.connect('mongodb://localhost/mouneyou', {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
 
     exports.StampOrder = mongoose.model('StampOrder');
     exports.ClickCount = mongoose.model('ClickCount');
