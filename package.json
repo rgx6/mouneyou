@@ -10,7 +10,7 @@
     "errorhandler": "^1.5.1",
     "es6-promise": "^3.0.2",
     "express": "~4.17.1",
-    "log4js": "~0.6.21",
+    "log4js": "~6.4.0",
     "mongoose": "^5.13.9",
     "node-uuid": "~1.4.2",
     "pug": "^3.0.2",
