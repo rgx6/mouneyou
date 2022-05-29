@@ -1,10 +1,10 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var minifyCSS = require('gulp-minify-css');
-var del = require('del');
+var gulp        = require('gulp');
+var concat      = require('gulp-concat');
+var uglify      = require('gulp-uglify');
+var cleanCSS    = require('gulp-clean-css');
+var del         = require('del');
 var browserSync = require('browser-sync');
-var sourcemaps = require('gulp-sourcemaps');
+var sourcemaps  = require('gulp-sourcemaps');
 
 gulp.task('js', function (done) {
     // todo : clean
@@ -18,7 +18,7 @@ gulp.task('js', function (done) {
         ])
         .pipe(sourcemaps.init())
         .pipe(concat('client.js'))
-        .pipe(uglify({ preserveComments: 'some' }))
+        .pipe(uglify({ output: { comments: /^!/ } }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/public/javascripts'));
     done();
@@ -29,7 +29,7 @@ gulp.task('css', function (done) {
     gulp.src('src/css/**/*.css')
         .pipe(sourcemaps.init())
         .pipe(concat('style.css'))
-        .pipe(minifyCSS())
+        .pipe(cleanCSS())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/public/stylesheets'));
     done();

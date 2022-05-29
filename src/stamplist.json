@@ -1100,5 +1100,37 @@
             "https://twitter.com/moune_you/status/1427287331459919880/photo/1"
         ],
         "searchTag": "やすみ"
+    },
+    {
+        "id": "stamp118",
+        "image": "/images/stamp/stamp118.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1530817553400217600/photo/1"
+        ],
+        "searchTag": "おしえて"
+    },
+    {
+        "id": "stamp119",
+        "image": "/images/stamp/stamp119.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1530817556386557952/photo/1"
+        ],
+        "searchTag": "へんしんふよう もーるす"
+    },
+    {
+        "id": "stamp120",
+        "image": "/images/stamp/stamp120.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1530817558982848513/photo/1"
+        ],
+        "searchTag": "できる"
+    },
+    {
+        "id": "stamp121",
+        "image": "/images/stamp/stamp121.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1530817561797226496/photo/1"
+        ],
+        "searchTag": ""
     }
 ]

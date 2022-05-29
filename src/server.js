@@ -9,10 +9,7 @@ var socketapp    = require('./socketapp.js');
 
 log4js.configure('log4js_configuration.json', { reloadSecs: 60 });
 var appLogger = log4js.getLogger('appLog');
-appLogger.setLevel(log4js.levels.INFO);
-//appLogger.setLevel(log4js.levels.DEBUG);
 var accessLogger = log4js.getLogger('accessLog');
-accessLogger.setLevel(log4js.levels.INFO);
 
 var app = express();
 app.set('port', process.env.PORT || 3003);
