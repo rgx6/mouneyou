@@ -11,7 +11,7 @@
     "es6-promise": "^3.0.2",
     "express": "~4.17.1",
     "log4js": "~6.4.4",
-    "mongoose": "^5.13.9",
+    "mongoose": "^5.13.15",
     "node-uuid": "~1.4.2",
     "pug": "^3.0.2",
     "socket.io": "^4.2.0",
