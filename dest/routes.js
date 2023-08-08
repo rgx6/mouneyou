@@ -9,8 +9,6 @@ var animeList = require('./animelist.json');
 var etagStampList = '' + Date.now();
 var etagAnimeList = '' + Date.now();
 
-var tweetCountBase = 8494;
-
 exports.set = function (appRoot, app) {
     app.get(appRoot, index);
     app.get(appRoot + 'api/stamplist', apiStampList);
@@ -103,47 +101,43 @@ var rankingStamp = function (req, res) {
 var index = function (req, res) {
     'use strict';
 
-    getTweetCount().then(function (tweetCount) {
-        var id = req.query.id;
-        if (isUndefinedOrNull(id)) {
-            res.render('index', {
-                id:         '',
-                stampOrder: [],
-                stampList:  stampList,
-                animeList:  animeList,
-                tweetCount: tweetCount,
-            });
+    var id = req.query.id;
+    if (isUndefinedOrNull(id)) {
+        res.render('index', {
+            id:         '',
+            stampOrder: [],
+            stampList:  stampList,
+            animeList:  animeList,
+        });
+        return;
+    }
+
+    if (id.length !== 32) {
+        res.sendStatus(404);
+        return;
+    }
+
+    var query = db.StampOrder.findOne({ id: id, isDeleted: false });
+    query.exec(function (err, doc) {
+        if (err) {
+            logger.error(err);
+            res.sendStatus(500);
             return;
         }
 
-        if (id.length !== 32) {
+        if (!doc) {
+            logger.error('id not registered : ' + id);
             res.sendStatus(404);
             return;
         }
 
-        var query = db.StampOrder.findOne({ id: id, isDeleted: false });
-        query.exec(function (err, doc) {
-            if (err) {
-                logger.error(err);
-                res.sendStatus(500);
-                return;
-            }
-
-            if (!doc) {
-                logger.error('id not registered : ' + id);
-                res.sendStatus(404);
-                return;
-            }
-
-            res.render('index', {
-                id:         id,
-                stampOrder: doc.stampOrder,
-                stampList:  stampList,
-                animeList:  animeList,
-                tweetCount: tweetCount,
-            });
-            return;
+        res.render('index', {
+            id:         id,
+            stampOrder: doc.stampOrder,
+            stampList:  stampList,
+            animeList:  animeList,
         });
+        return;
     });
 };
 
@@ -238,22 +232,6 @@ var updateOrder = function (req, res) {
         return;
     });
 };
-
-function getTweetCount () {
-    'use strict';
-
-    return new Promise(function (fulfill, reject) {
-        db.Tweet.count(function (err, count) {
-            if (err) {
-                logger.error(err);
-                fulfill();
-                return;
-            }
-
-            fulfill(tweetCountBase + count);
-        });
-    });
-}
 
 function checkOrder (order) {
     'use strict';

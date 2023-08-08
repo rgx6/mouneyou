@@ -220,8 +220,8 @@ body.background-11 {
 
 .items .tweet {
   position: relative;
-  background-color: #55acee;
-  background-image: url(/images/Twitter_logo_white.png);
+  background-color: #fff;
+  background-image: url(/images/x_logo.png);
   background-size: auto;
   background-position: center center;
 }
@@ -458,7 +458,7 @@ a.statshirt {
   .tweet:after {
     bottom: 100%;
     left: 50%;
-    border-bottom-color: #55acee;
+    border-bottom-color: #fff;
     margin-left: -10px;
   }
 
@@ -474,7 +474,7 @@ a.statshirt {
   .tweet:after {
     right: 100%;
     top: 50%;
-    border-right-color: #55acee;
+    border-right-color: #fff;
     margin-top: -10px;
   }
 
@@ -490,7 +490,7 @@ a.statshirt {
   .tweet:after {
     right: 100%;
     top: 50%;
-    border-right-color: #55acee;
+    border-right-color: #fff;
     margin-top: -10px;
   }
 
