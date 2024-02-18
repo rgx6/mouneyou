@@ -267,8 +267,6 @@
             div.insertBefore(sortButton);
         }
 
-        document.getElementById('count').setAttribute('href', tweetListUrl);
-
         var q = {};
         location.search.substr(1).split('&').forEach(function (p) {
             var param = p.split('=');
