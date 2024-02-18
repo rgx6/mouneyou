@@ -1132,5 +1132,37 @@
             "https://twitter.com/moune_you/status/1530817561797226496/photo/1"
         ],
         "searchTag": "あたまにつつがはまったとき"
+    },
+    {
+        "id": "stamp122",
+        "image": "/images/stamp/stamp122.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1759209793334755720/photo/1"
+        ],
+        "searchTag": "おそとでない くまとかあぶないし"
+    },
+    {
+        "id": "stamp123",
+        "image": "/images/stamp/stamp123.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1759210929181565224/photo/1"
+        ],
+        "searchTag": "おだいじに"
+    },
+    {
+        "id": "stamp124",
+        "image": "/images/stamp/stamp124.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1759211117015126372/photo/1"
+        ],
+        "searchTag": "いまとてもいそがしい"
+    },
+    {
+        "id": "stamp125",
+        "image": "/images/stamp/stamp125.png",
+        "src": [
+            "https://twitter.com/moune_you/status/1759211300431986780/photo/1"
+        ],
+        "searchTag": "もほろびちっちふれんぞくめん ちかく まんとる 非すたちゅー"
     }
 ]
