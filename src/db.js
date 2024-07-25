@@ -2,6 +2,8 @@
     'use strict';
 
     var mongoose = require('mongoose');
+    var config = require('./db_configuration.js');
+
     var Schema = mongoose.Schema;
 
     var StampOrderSchema = new Schema({
@@ -20,23 +22,8 @@
     });
     mongoose.model('ClickCount', ClickCountSchema);
 
-    var TweetSchema = new Schema({
-        tweetId:        { type: String,   require: true, index: true, unique: true },
-        userScreenName: { type: String,   require: true  },
-        mediaUrls:      { type: [String], require: false },
-        expandedUrls:   { type: [String], require: false },
-        createdAt:      { type: Number,   require: true, index: true },
-        registeredTime: { type: Date,     require: true  },
-    });
-    mongoose.model('Tweet', TweetSchema);
-
-    mongoose.connect('mongodb://localhost/mouneyou', {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+    mongoose.connect(config.connectionString);
 
     exports.StampOrder = mongoose.model('StampOrder');
     exports.ClickCount = mongoose.model('ClickCount');
-    exports.Tweet      = mongoose.model('Tweet');
 })();

@@ -686,7 +686,7 @@
         }
 
         if (socket != null) {
-            socket.socket.connect();
+            socket.connect();
             return;
         }
 

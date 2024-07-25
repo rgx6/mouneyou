@@ -1,7 +1,7 @@
-var log4js  = require('log4js');
-var logger  = log4js.getLogger('appLog');
-var server  = require('./server.js');
-var db      = require('./db.js');
+var log4js = require('log4js');
+var logger = log4js.getLogger('appLog');
+var server = require('./server.js');
+var db     = require('./db.js');
 
 var sendClickDataInterval = 1000;
 
@@ -12,16 +12,17 @@ var lapClickCount   = 0;
 var maxGlobalUserCount = 0;
 var maxLapClickCount   = 0;
 
-db.ClickCount.findOne().select('count').exec(function (err, doc) {
-    if (err) {
+db.ClickCount.findOne()
+    .select('count')
+    .then((doc) => {
+        if (doc != null) {
+            totalClickCount = doc.count;
+        }
+    })
+    .catch((err) => {
         logger.error(err);
         return;
-    }
-
-    if (doc != null) {
-        totalClickCount = doc.count;
-    }
-});
+    });
 
 var lapTimer = setInterval(function () {
     if (lapClickCount === 0) return;
@@ -38,23 +39,25 @@ var lapTimer = setInterval(function () {
         clickCount: totalClickCount,
     });
 
-    db.ClickCount.findOneAndUpdate({
-        // none
-    }, {
-        $set: {
-            count:       totalClickCount,
-            updatedTime: new Date(),
+    db.ClickCount.findOneAndUpdate(
+        {
+            // none
         },
-        $setOnInsert: {
-            registeredTime: new Date(),
+        {
+            $set: {
+                count: totalClickCount,
+                updatedTime: new Date(),
+            },
+            $setOnInsert: {
+                registeredTime: new Date(),
+            },
+        },
+        {
+            upsert: true,
         }
-    }, {
-        upsert: true,
-    }, function (err, numberAffected) {
-        if (err) {
-            logger.error(err);
-            return;
-        }
+    ).catch((err) => {
+        logger.error(err);
+        return;
     });
 }, sendClickDataInterval);
 

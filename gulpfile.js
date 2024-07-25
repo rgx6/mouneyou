@@ -43,7 +43,8 @@ gulp.task('img', function (done) {
             '!src/img/sprite_src/*.*',
             '!src/img/stamp_original/*.*',
             '!src/img/stamp_twitter_optimized/*.*'
-        ])
+        ],
+        { encoding: false })
         .pipe(gulp.dest('src/public/images'));
     done();
 });
@@ -53,7 +54,8 @@ gulp.task('font', function (done) {
     gulp.src(
         [
             'src/font/**/*.*'
-        ])
+        ],
+        { encoding: false })
         .pipe(gulp.dest('src/public/fonts'));
     done();
 });
@@ -76,10 +78,10 @@ gulp.task('build', gulp.series(gulp.parallel('js', 'css', 'img', 'font'), functi
     gulp.src(['src/public/stylesheets/*.css', 'src/public/stylesheets/*.map'])
         .pipe(gulp.dest('dest/public/stylesheets'));
 
-    gulp.src('src/public/images/**/*.*')
+    gulp.src('src/public/images/**/*.*', { encoding: false })
         .pipe(gulp.dest('dest/public/images'));
 
-    gulp.src('src/public/fonts/**/*.*')
+    gulp.src('src/public/fonts/**/*.*', { encoding: false })
         .pipe(gulp.dest('dest/public/fonts'));
 
     gulp.src('src/views/**/*.pug')
